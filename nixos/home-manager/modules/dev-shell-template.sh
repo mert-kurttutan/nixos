@@ -15,7 +15,7 @@ for arg in "$@"; do
   case "$arg" in
     --no-gcroot) GCROOT=false ;;
     --gcroot) GCROOT=true ;;
-    --track-flake) TRACK_FLAKE=true ;;
+    --track-flake|-t) TRACK_FLAKE=true ;;
     -h|--help)
       cat <<'HELP'
 Usage: dev-shell-template [options]
