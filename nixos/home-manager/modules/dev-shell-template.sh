@@ -6,6 +6,7 @@ set -e
 # ----------------------------
 GCROOT=true
 PROFILE_PATH="dev.nix-cache"
+TRACK_FLAKE=false
 
 # ----------------------------
 # Argument parsing
@@ -14,6 +15,7 @@ for arg in "$@"; do
   case "$arg" in
     --no-gcroot) GCROOT=false ;;
     --gcroot) GCROOT=true ;;
+    --track-flake) TRACK_FLAKE=true ;;
     -h|--help)
       cat <<'HELP'
 Usage: dev-shell-template [options]
@@ -21,10 +23,13 @@ Usage: dev-shell-template [options]
 Options:
   --gcroot        Prime a nix develop profile GC-root (default)
   --no-gcroot     Do not create/prime the profile GC-root
+  --track-flake   Run "git add -N flake.nix" before nix develop
+                  Do not run git tracking (default)
   -h, --help      Show this help
 
 Behavior:
   - Always creates ./flake.nix in the current directory
+  - With --track-flake, ensures flake.nix is tracked in git repos
   - If --gcroot is enabled, runs:
       nix develop --profile .nix-develop-cache --command true
   - Does NOT enter/activate the dev shell afterwards
@@ -99,6 +104,20 @@ EOF
 
 echo -e "${GREEN}✓ flake.nix created successfully!${NC}"
 echo ""
+
+# ----------------------------
+# Optional: track flake.nix in git repo to avoid nix errors
+# ----------------------------
+if [[ "$TRACK_FLAKE" == "true" ]]; then
+  if command -v git >/dev/null 2>&1 && git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    git add -N flake.nix
+    echo -e "${GREEN}✓ flake.nix marked as tracked in git${NC}"
+    echo ""
+  else
+    echo -e "${YELLOW}Skipping git tracking (not a git repo).${NC}"
+    echo ""
+  fi
+fi
 
 # ----------------------------
 # Optional: prime GC root profile (no interactive shell)
