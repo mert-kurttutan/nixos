@@ -1,0 +1,1 @@
+sudo cp -a /home/mert/Desktop/nixos-conf/nixos/ /etc/nixos/

@@ -7,6 +7,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     claude-code.url = "github:sadjow/claude-code-nix/08c857d3f5ecbf16b8de8c7d6b83d277a064a406";
     codex.url = "github:sadjow/codex-cli-nix/ad93e1e172f994e743de9da7bb9ff4ff140c654d";
+    typst.url = "github:typst/typst-flake";
+    typst.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -16,6 +18,7 @@
       home-manager,
       claude-code,
       codex,
+      typst,
       ...
     }:
     {
