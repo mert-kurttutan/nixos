@@ -135,7 +135,7 @@
     warp-terminal
     fnm
     inputs.codex.packages.${pkgs.stdenv.hostPlatform.system}.codex
-    inputs.typst.packages.${pkgs.stdenv.hostPlatform.system}.typst
+    inputs.typst.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # rust
     rustup

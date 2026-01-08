@@ -1,1 +1,1 @@
-sudo cp -a /home/mert/Desktop/nixos-conf/nixos/ /etc/nixos/
+sudo cp -a /home/mert/Desktop/nixos-conf/nixos/. /etc/nixos/
