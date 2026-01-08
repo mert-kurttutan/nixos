@@ -8,8 +8,6 @@
     ./lazygit.nix
     ./ranger.nix
     ./tmux.nix
-    ./zathura.nix
-    ./zsh.nix
     ./dev-shell-init.nix
   ];
 }
