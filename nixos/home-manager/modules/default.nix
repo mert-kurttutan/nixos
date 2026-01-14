@@ -9,5 +9,6 @@
     ./ranger.nix
     ./tmux.nix
     ./dev-shell-init.nix
+    ./activate-python-ld-path.nix
   ];
 }
