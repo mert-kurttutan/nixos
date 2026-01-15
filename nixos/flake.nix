@@ -6,7 +6,7 @@
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     claude-code.url = "github:sadjow/claude-code-nix/08c857d3f5ecbf16b8de8c7d6b83d277a064a406";
-    codex.url = "github:sadjow/codex-cli-nix/ad93e1e172f994e743de9da7bb9ff4ff140c654d";
+    codex.url = "github:sadjow/codex-cli-nix/86625f8b0021b00d206732ed0c04e067c71a4701";
     typst.url = "github:typst/typst-flake";
     typst.inputs.nixpkgs.follows = "nixpkgs";
   };
