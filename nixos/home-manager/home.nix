@@ -37,6 +37,9 @@
     bashrcExtra = ''
       export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/.cargo/bin"
       export CUDA_PATH=${pkgs.cudatoolkit}
+      ld-path-python() {
+        export LD_LIBRARY_PATH=/run/opengl-driver/lib:$LD_LIBRARY_PATH
+      }
     '';
 
     # set some aliases, feel free to add more or remove some
