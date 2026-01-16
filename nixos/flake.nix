@@ -21,7 +21,12 @@
       typst,
       ...
     }:
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in
     {
+      formatter.${system} = pkgs.nixfmt-tree;
       nixosConfigurations = {
         nixos =
           let
@@ -31,7 +36,7 @@
           in
           nixpkgs.lib.nixosSystem {
             inherit specialArgs;
-            system = "x86_64-linux";
+            system = system;
 
             modules = [
               ./configuration.nix
