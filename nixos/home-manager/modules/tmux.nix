@@ -33,6 +33,17 @@
       bind -T resize C-n switch-client -T root
       bind -T resize Escape switch-client -T root
       bind -T resize Enter switch-client -T root
+      # Tab (window) mode: Ctrl+t, then n to open a new tab.
+      bind -n C-t switch-client -T tab
+      bind -T tab n new-window \; switch-client -T tab
+      bind -T tab Left previous-window \; switch-client -T tab
+      bind -T tab Right next-window \; switch-client -T tab
+      bind -T tab Up previous-window \; switch-client -T tab
+      bind -T tab Down next-window \; switch-client -T tab
+      # Exit tab mode.
+      bind -T tab C-t switch-client -T root
+      bind -T tab Escape switch-client -T root
+      bind -T tab Enter switch-client -T root
     '';
     plugins = with pkgs; [
       tmuxPlugins.gruvbox
