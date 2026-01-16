@@ -47,34 +47,6 @@
     };
   };
 
-  programs.tmux = {
-    enable = true;
-    extraConfig = ''
-      unbind C-b
-      set-option -g prefix C-a
-      bind-key C-a send-prefix
-
-      ## split panes
-      bind u split-window -h
-      bind y split-window -v
-      unbind '"'
-      unbind %
-
-      # Pane navigation with Alt+u/h/j/k
-      bind -n M-j select-pane -L
-      bind -n M-l select-pane -R
-      bind -n M-ı select-pane -U
-      bind -n M-k select-pane -D
-
-      # Pane resizing with Ctrl+Alt+Arrow keys
-      bind j resize-pane -L 5
-      bind l resize-pane -R 5
-      bind ı resize-pane -U 5
-      bind k resize-pane -D 5
-
-      bind r source-file ~/.tmux.conf \; display "Config reloaded!"
-    '';
-  };
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new home Manager release introduces backwards
