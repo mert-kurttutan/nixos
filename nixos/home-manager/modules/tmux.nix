@@ -9,16 +9,30 @@
     terminal = "screen-256color";
     extraConfig = ''
       set -as terminal-features ",alacritty*:RGB"
+      # Use Ctrl+p as the tmux prefix.
       unbind C-b
       set -g prefix C-p
       bind C-p send-prefix
+      # Zellij-like default new pane (vertical) with Alt+n.
       bind -n M-n split-window -v
+      # Explicit split directions: Ctrl+p then r (horizontal) or d (vertical).
       bind r split-window -h
       bind d split-window -v
+      # Pane navigation with Alt+arrow keys.
       bind -n M-Left select-pane -L
       bind -n M-Right select-pane -R
       bind -n M-Up select-pane -U
       bind -n M-Down select-pane -D
+      # Resize mode: Ctrl+n, then arrows resize until you exit.
+      bind -n C-n switch-client -T resize
+      bind -T resize Left resize-pane -L 5 \; switch-client -T resize
+      bind -T resize Right resize-pane -R 5 \; switch-client -T resize
+      bind -T resize Up resize-pane -U 3 \; switch-client -T resize
+      bind -T resize Down resize-pane -D 3 \; switch-client -T resize
+      # Exit resize mode.
+      bind -T resize C-n switch-client -T root
+      bind -T resize Escape switch-client -T root
+      bind -T resize Enter switch-client -T root
     '';
     plugins = with pkgs; [
       tmuxPlugins.gruvbox
