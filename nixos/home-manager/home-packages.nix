@@ -21,6 +21,7 @@
     dive
     dua
     cliphist
+    fd
     ffmpeg
     ffmpegthumbnailer
     fzf
