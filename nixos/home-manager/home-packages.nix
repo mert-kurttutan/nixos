@@ -158,9 +158,10 @@
 
     # ide/editors
     vscode
-    zed-editor
     helix
     marimo
+
+    inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.zed-latest
 
     # browsers
     brave
