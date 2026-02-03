@@ -165,7 +165,9 @@
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDOJdglHrLT1C6Jg2rzEyVpo5jR1O++nkGdvjVm7acErLTeMX1OwC/Ha5Bznj+VE+LBcMeZ3hNhjwxDGN029z777iSfaI+jL1fSKJjf2YK/8IjuOtKvVWuYdY8tHd43EkQtAz38RbqkxV/V/0TccbbIDHrfkGDdejo9vEVjyhcatwImdzqqyFFpi3oh09CGAEZBq59P377LxImF70IJmswQo5T9opSl3YPCQWOpFOOtIn2KTIIiWOx9leax3vQ73WgYouE/rP4obihLux7X0NNr3Id33uBQ5s4Tm44Pi5eN/o1sKAtWWe135jModcKkzfGdQ5oz+RC2AfbBYm6vSxXZLvEy6L+aLUbq01muqzKnaryMztnQC4iYi553H/d9vifUXTkCR2ooKX5B3kuQiPEXteXQn5DA9lLiav/ZLR35zg2A3nw9c0EYpeooeWxWdDRMRZzHN8Rm5pcTJ32LeqDMaW+WCTgHytDW4YAMxg6Kj82LTxkwayTu2Vquuy8LPTcsE0ANaiwtp6iDVKWhpev47wIFtXZmlaFDn2OxYh3mKoebJG513pXliiXOdLnnydti576PQB/JSk3huM1H87BJFb/MB9SJBpjLOgcodrcV+BmCbu/tgsHdUYcNfF+rMKfim/GP0wUKRlByOPxRCU6MrkKN27ZDjHcZPN7OrMS6Qw== kmert@nixos"
     ];
   };
-
+  programs.steam = {
+    enable = true;
+  };
   # Install firefox.
   programs.firefox = {
     enable = true;
