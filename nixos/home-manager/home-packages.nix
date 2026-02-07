@@ -25,6 +25,7 @@
     ffmpeg
     ffmpegthumbnailer
     fzf
+    gh
     just
     # git-graph
     htop
@@ -162,7 +163,7 @@
     helix
     marimo
 
-    inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.zed-latest
+    inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.zed
 
     # browsers
     brave
