@@ -29,7 +29,6 @@
     in
     {
       formatter.${system} = pkgs.nixfmt-tree;
-      packages.${system}.zed-latest = zed.packages.${system}.default;
       nixosConfigurations = {
         nixos =
           let

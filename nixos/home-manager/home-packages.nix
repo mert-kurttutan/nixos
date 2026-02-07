@@ -163,7 +163,7 @@
     helix
     marimo
 
-    inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.zed
+    inputs.zed.packages.${pkgs.stdenv.hostPlatform.system}.zed
 
     # browsers
     brave
