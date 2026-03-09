@@ -6,8 +6,8 @@
   ];
   programs.home-manager.enable = true;
   # TODO please change the username & home directory to your own
-  home.username = "mert";
-  home.homeDirectory = "/home/mert";
+  home.username = "kmert";
+  home.homeDirectory = "/home/kmert";
 
   # set cursor size and dpi for 4k monitor
   xresources.properties = {

@@ -1,15 +1,16 @@
 {
-  description = "NixOS configuration of mert-kurttutan";
+  description = "NixOS configuration of Mert Kurttutan";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     claude-code.url = "github:sadjow/claude-code-nix/08c857d3f5ecbf16b8de8c7d6b83d277a064a406";
-    codex.url = "github:sadjow/codex-cli-nix/d3abf748ac6a06016a6fff14b5a99dedacf72378";
+    codex.url = "github:sadjow/codex-cli-nix/def85c75aa8344f38b9b9fd893cf59debc1d1300";
     zed.url = "github:mert-kurttutan/zed-nix";
     typst.url = "github:typst/typst-flake";
     typst.inputs.nixpkgs.follows = "nixpkgs";
+    git-xet.url = "github:mert-kurttutan/git-xet-nix";
   };
 
   outputs =
@@ -21,6 +22,7 @@
       codex,
       zed,
       typst,
+      git-xet,
       ...
     }:
     let
@@ -32,7 +34,7 @@
       nixosConfigurations = {
         nixos =
           let
-            username = "mert";
+            username = "kmert";
             user = username; # Define user variable
             specialArgs = { inherit username inputs user; };
           in
