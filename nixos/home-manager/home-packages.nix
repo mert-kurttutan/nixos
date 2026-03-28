@@ -13,6 +13,10 @@
     # pavucontrol
     # teams-for-linux
     # telegram-desktop
+    # terminal emulators
+    alacritty
+    wezterm
+    ghostty
 
     # CLI utils
     bc
@@ -57,7 +61,7 @@
     bemoji
     nix-prefetch-scripts
     kubectl
-    neofetch
+    macchina
     nnn # terminal file manager
 
     # archives
@@ -113,6 +117,7 @@
     btop # replacement of htop/nmon
     iotop # io monitoring
     iftop # network monitoring
+    powertop # power monitoring
 
     # web
     postman
@@ -171,5 +176,8 @@
     # cloud
     awscli2
     # aws-sam-cli
+
+    # shell
+    nushell
   ];
 }

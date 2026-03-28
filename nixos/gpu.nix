@@ -13,7 +13,7 @@
     # driSupport = true;
     extraPackages = with pkgs; [
       intel-media-driver # LIBVA_DRIVER_NAME=iHD
-      # vpl-gpu-rt
+      vpl-gpu-rt
       # vaapiIntel         # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
       # vaapiVdpau
       # libvdpau-va-gl
