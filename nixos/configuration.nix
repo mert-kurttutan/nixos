@@ -8,6 +8,9 @@
   ...
 }:
 
+let
+  casperWmi = config.boot.kernelPackages.callPackage ./pkgs/casper-wmi { };
+in
 {
   imports = [
     # Include the results of the hardware scan.
@@ -53,6 +56,8 @@
     nvidiaBusId = "PCI:1:0:0";
   };
   boot.kernelPackages = pkgs.linuxPackages;
+  boot.extraModulePackages = [ casperWmi ];
+  boot.kernelModules = [ "casper-wmi" ];
   # Bootloader.
   boot.kernelParams = [
     "intel_idle.max_cstate=1"
