@@ -55,7 +55,7 @@
   boot.kernelPackages = pkgs.linuxPackages;
   # Bootloader.
   boot.kernelParams = [
-    # "intel_idle.max_cstate=1"
+    "intel_idle.max_cstate=1"
     "acpi_backlight=native"
     "nvidia-drm.modeset=0"
     "nvidia-drm.fbdev=1"
