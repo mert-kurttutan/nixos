@@ -1,8 +1,6 @@
 {
   imports = [
-    ./bat.nix
     ./chromium.nix
-    ./eza.nix
     ./git.nix
     ./lazygit.nix
     ./ranger.nix

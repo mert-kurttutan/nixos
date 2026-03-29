@@ -15,7 +15,6 @@
     # telegram-desktop
     # terminal emulators
     alacritty
-    wezterm
     ghostty
 
     # CLI utils
@@ -58,7 +57,6 @@
     python311
 
     # Other
-    bemoji
     nix-prefetch-scripts
     kubectl
     macchina
@@ -74,13 +72,13 @@
     ripgrep # recursively searches directories for a regex pattern
     jq # A lightweight and flexible command-line JSON processor
     yq-go # yaml processor https://github.com/mikefarah/yq
-    eza # A modern replacement for ‘ls’
     fzf # A command-line fuzzy finder
 
     pandoc
 
     # networking tools
     mtr # A network diagnostic tool
+    vnstat # A network traffic monitor
     iperf3
     dnsutils # `dig` + `nslookup`
     ldns # replacement of `dig`, it provide the command `drill`
@@ -90,7 +88,6 @@
     ipcalc # it is a calculator for the IPv4/v6 addresses
     sniffnet
     # misc
-    cowsay
     file
     which
     tree
@@ -118,6 +115,7 @@
     iotop # io monitoring
     iftop # network monitoring
     powertop # power monitoring
+    powerstat
 
     # web
     postman

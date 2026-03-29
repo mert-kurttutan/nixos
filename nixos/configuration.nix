@@ -55,7 +55,7 @@
   boot.kernelPackages = pkgs.linuxPackages;
   # Bootloader.
   boot.kernelParams = [
-    "intel_idle.max_cstate=1"
+    # "intel_idle.max_cstate=1"
     "acpi_backlight=native"
     "nvidia-drm.modeset=0"
     "nvidia-drm.fbdev=1"
@@ -63,10 +63,27 @@
     # "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
     "initcall_blacklist=simpledrm_platform_driver_init"
   ];
+
+  boot.kernel.sysctl = {
+    "vm.dirty_writeback_centisecs" = 1500;
+    "kernel.nmi_watchdog" = 0;
+  };
+
+
+  boot.extraModprobeConfig = ''
+    options snd_hda_intel power_save=1
+  '';
+
+  services.udev.extraRules = ''
+    SUBSYSTEM=="pci", ATTR{power/control}="auto"
+  '';
+  services.tlp.enable = true;
+  services.power-profiles-daemon.enable = false;
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  services.vnstat.enable = true;
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -256,21 +273,21 @@
     };
   };
 
-  virtualisation.docker = {
-    enable = true;
-    # Customize Docker daemon settings using the daemon.settings option
-    # daemon.settings = {
-    #   dns = [ "1.1.1.1" "8.8.8.8" ];
-    #   log-driver = "journald";
-    #   registry-mirrors = [ "https://mirror.gcr.io" ];
-    #   storage-driver = "overlay2";
-    # };
-    # Use the rootless mode - run Docker daemon as non-root user
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
-  };
+  # virtualisation.docker = {
+  #   enable = true;
+  #   # Customize Docker daemon settings using the daemon.settings option
+  #   # daemon.settings = {
+  #   #   dns = [ "1.1.1.1" "8.8.8.8" ];
+  #   #   log-driver = "journald";
+  #   #   registry-mirrors = [ "https://mirror.gcr.io" ];
+  #   #   storage-driver = "overlay2";
+  #   # };
+  #   # Use the rootless mode - run Docker daemon as non-root user
+  #   rootless = {
+  #     enable = true;
+  #     setSocketVariable = true;
+  #   };
+  # };
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
