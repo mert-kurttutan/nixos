@@ -61,7 +61,7 @@
     "nvidia-drm.fbdev=1"
     # "nvidia.NVreg_TemporaryFilePath=/var/tmp"
     # "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
-    "initcall_blacklist=simpledrm_platform_driver_init"
+    # "initcall_blacklist=simpledrm_platform_driver_init"
   ];
 
   boot.kernel.sysctl = {
@@ -78,6 +78,10 @@
     SUBSYSTEM=="pci", ATTR{power/control}="auto"
   '';
   services.tlp.enable = true;
+  services.tlp.settings = {
+      # CPU_ENERGY_PERF_POLICY_ON_AC = "balance_performance";
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_performance";
+  };
   services.power-profiles-daemon.enable = false;
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -247,7 +251,7 @@
     lshw
     pciutils
     mesa-demos
-    xorg.xorgserver
+    xorg-server
     dmidecode
     linuxKernel.packages.linux_zen.turbostat
     linuxKernel.packages.linux_zen.cpupower
@@ -330,7 +334,7 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05"; # Did you read the comment?
+  system.stateVersion = "25.11"; # Did you read the comment?
 
   # systemd.additionalUpstreamSystemUnits = [ "debug-shell.service" ];
 
