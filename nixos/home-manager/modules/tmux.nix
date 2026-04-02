@@ -11,8 +11,8 @@
       set -as terminal-features ",alacritty*:RGB"
       # Use Ctrl+p as the tmux prefix.
       unbind C-b
-      set -g prefix C-p
-      bind C-p send-prefix
+      set -g prefix C-a
+      bind C-a send-prefix
       # Zellij-like default new pane (vertical) with Alt+n.
       bind -n M-n split-window -v
       # Explicit split directions: Ctrl+p then r (horizontal) or d (vertical).
