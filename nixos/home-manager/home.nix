@@ -1,4 +1,9 @@
 { pkgs, ... }:
+let
+  zedNvidia = pkgs.writeShellScriptBin "zed-nvidia" ''
+    exec env ZED_DEVICE_ID=0x2820 zed "$@"
+  '';
+in
 {
   imports = [
     ./modules
@@ -15,6 +20,10 @@
     "Xft.dpi" = 172;
   };
   # Packages that should be installed to the user profile.
+  home.packages = [
+    zedNvidia
+  ];
+
   programs.bash = {
     enable = true;
     enableCompletion = true;
@@ -47,5 +56,26 @@
 
   home.sessionVariables = {
     CUDA_PATH = "${pkgs.cudatoolkit}";
+  };
+
+  xdg.desktopEntries.zed-nvidia = {
+    name = "Zed (NVIDIA)";
+    genericName = "Text Editor";
+    comment = "Launch Zed on the NVIDIA GPU";
+    exec = "zed-nvidia %U";
+    icon = "zed";
+    terminal = false;
+    type = "Application";
+    categories = [
+      "Utility"
+      "TextEditor"
+      "Development"
+      "IDE"
+    ];
+    mimeType = [
+      "text/plain"
+      "application/x-zerosize"
+      "x-scheme-handler/zed"
+    ];
   };
 }
