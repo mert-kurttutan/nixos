@@ -24,6 +24,7 @@
     dive
     dua
     cliphist
+    fastfetch
     fd
     ffmpeg
     ffmpegthumbnailer
@@ -59,7 +60,6 @@
     # Other
     nix-prefetch-scripts
     kubectl
-    macchina
     nnn # terminal file manager
 
     # archives
@@ -108,7 +108,7 @@
     # productivity
     hugo # static site generator
     glow # markdown previewer in terminal
-    discord-ptb
+    # discord-ptb
     rustdesk
 
     btop # replacement of htop/nmon

@@ -47,17 +47,17 @@ in
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.prime = {
     # sync.enable = true;
-    # offload = {
-    #   enable = true;
-    #   # enableOffloadCmd = true;
-    # };
+    offload = {
+      enable = true;
+      enableOffloadCmd = true;
+    };
     # dedicated
     intelBusId = "PCI:0:2:0";
     nvidiaBusId = "PCI:1:0:0";
   };
   boot.kernelPackages = pkgs.linuxPackages;
-  boot.extraModulePackages = [ casperWmi ];
-  boot.kernelModules = [ "casper-wmi" ];
+  # boot.extraModulePackages = [ casperWmi ];
+  # boot.kernelModules = [ "casper-wmi" ];
   # Bootloader.
   boot.kernelParams = [
     "intel_idle.max_cstate=1"
@@ -74,7 +74,6 @@ in
     "kernel.nmi_watchdog" = 0;
   };
 
-
   boot.extraModprobeConfig = ''
     options snd_hda_intel power_save=1
   '';
@@ -83,10 +82,10 @@ in
     SUBSYSTEM=="pci", ATTR{power/control}="auto"
   '';
   services.tlp.enable = true;
-  services.tlp.settings = {
-      # CPU_ENERGY_PERF_POLICY_ON_AC = "balance_performance";
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_performance";
-  };
+  # services.tlp.settings = {
+  #   # CPU_ENERGY_PERF_POLICY_ON_AC = "balance_performance";
+  #   CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_performance";
+  # };
   services.power-profiles-daemon.enable = false;
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -184,23 +183,6 @@ in
     ];
   };
   programs.steam = {
-    enable = true;
-  };
-  # Install firefox.
-  programs.firefox = {
-    enable = true;
-    preferences = {
-      # Disable problematic GPU features
-      "layers.acceleration.force-enabled" = false;
-      "gfx.webrender.enabled" = false;
-      "media.ffmpeg.vaapi.enabled" = false;
-
-      # Or alternatively, use software rendering during power changes
-      "gfx.canvas.accelerated" = false;
-      "layers.gpu-process.enabled" = false;
-    };
-  };
-  programs.chromium = {
     enable = true;
   };
   # Create a wrapped Firefox that sets the environment variable
@@ -308,6 +290,7 @@ in
     dina-font
     proggyfonts
     iosevka
+    nerd-fonts.iosevka
   ];
   fonts.fontconfig = {
     defaultFonts = {

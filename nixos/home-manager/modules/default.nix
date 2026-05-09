@@ -1,6 +1,5 @@
 {
   imports = [
-    ./chromium.nix
     ./git.nix
     ./lazygit.nix
     ./ranger.nix
