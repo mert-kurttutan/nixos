@@ -17,6 +17,9 @@
     alacritty
     ghostty
 
+    # version control
+    # gitbutler
+
     # CLI utils
     bc
     bottom
@@ -109,7 +112,7 @@
     hugo # static site generator
     glow # markdown previewer in terminal
     # discord-ptb
-    rustdesk
+    # rustdesk
 
     btop # replacement of htop/nmon
     iotop # io monitoring
@@ -137,10 +140,13 @@
     sccache
     kubernetes-helm
 
+    # js
+    fnm
+    deno
+
     # AI
     inputs.claude-code.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
     warp-terminal
-    fnm
     inputs.codex.packages.${pkgs.stdenv.hostPlatform.system}.codex
     inputs.typst.packages.${pkgs.stdenv.hostPlatform.system}.default
 
@@ -164,7 +170,7 @@
     # ide/editors
     vscode
     helix
-    marimo
+    # marimo
 
     inputs.zed.packages.${pkgs.stdenv.hostPlatform.system}.zed
 

@@ -8,7 +8,7 @@
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     claude-code.url = "github:sadjow/claude-code-nix/08c857d3f5ecbf16b8de8c7d6b83d277a064a406";
-    codex.url = "github:sadjow/codex-cli-nix/7f0f3802287581e04501e2fea26b56d63df18ebd";
+    codex.url = "github:sadjow/codex-cli-nix/803b7de2cccae3abbb9d23c10826af087428b06e";
     zed.url = "github:mert-kurttutan/zed-nix";
     typst.url = "github:typst/typst-flake";
     typst.inputs.nixpkgs.follows = "nixpkgs";

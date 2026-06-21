@@ -60,6 +60,8 @@ in
   # boot.kernelModules = [ "casper-wmi" ];
   # Bootloader.
   boot.kernelParams = [
+    # needed to prevent freezing due to hardware issues
+    # at 13th gen intel CPUs
     "intel_idle.max_cstate=1"
     "acpi_backlight=native"
     "nvidia-drm.modeset=0"
@@ -185,17 +187,6 @@ in
   programs.steam = {
     enable = true;
   };
-  # Create a wrapped Firefox that sets the environment variable
-  nixpkgs.overlays = [
-    (self: super: {
-      firefox = super.firefox.overrideAttrs (oldAttrs: {
-        buildCommand = (oldAttrs.buildCommand or "") + ''
-          wrapProgram $out/bin/firefox \
-            --set __NV_DISABLE_EXPLICIT_SYNC 1
-        '';
-      });
-    })
-  ];
 
   # In configuration.nix
   nixpkgs.config.packageOverrides = pkgs: {
@@ -246,8 +237,6 @@ in
   ];
 
   environment.sessionVariables = {
-    MOZ_ENABLE_WAYLAND = "1";
-    MOZ_DISABLE_RDD_SANDBOX = "1";
     # LIBVA_DRIVER_NAME = "nvidia";
     # LIBVA_DRIVER_NAME = "nvidia";
     # GBM_BACKEND = "nvidia-drm";
@@ -322,7 +311,7 @@ in
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.11"; # Did you read the comment?
+  system.stateVersion = "26.11"; # Did you read the comment?
 
   # systemd.additionalUpstreamSystemUnits = [ "debug-shell.service" ];
 
