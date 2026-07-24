@@ -135,10 +135,16 @@
     pciutils # lspci
     usbutils # lsusb
     docker-compose
+    podman-desktop
     kubernetes
-    minikube
+    # minikube # TODO: revisit; currently conflicts with kubectl via bin/kubectl
     sccache
     kubernetes-helm
+
+    # vm
+    virt-manager
+    gnome-boxes
+    qemu
 
     # js
     fnm

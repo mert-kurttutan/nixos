@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 {
-  services.xserver.videoDrivers = [ "modesetting" ]; # modesetting didn't help
   # boot.blacklistedKernelModules = [ "nouveau" ];  # bbswitch
 
   # boot.kernelParams = [ "acpi_rev_override=5" "i915.enable_guc=2" ];
@@ -18,9 +17,6 @@
       # vaapiVdpau
       # libvdpau-va-gl
     ];
-  };
-  environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "iHD";
   };
 
   # Nvidia version mapping

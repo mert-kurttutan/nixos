@@ -5,29 +5,38 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }:
 
-let
-  casperWmi = config.boot.kernelPackages.callPackage ./pkgs/casper-wmi { };
-in
 {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./gpu.nix
+    inputs.cecc-linux.nixosModules.default
   ];
   hardware.cpu.intel.updateMicrocode = true;
   hardware.nvidia = {
     # Use open source kernel modules for newer GPUs
     open = true;
 
-    # modesetting.enable = true;
+    modesetting.enable = true;
     powerManagement.enable = true;
     nvidiaSettings = true;
 
     # Choose appropriate driver version
     package = config.boot.kernelPackages.nvidiaPackages.production;
+  };
+
+  specialisation = {
+    hybrid.configuration = {
+      imports = [ ./nvidia-hybrid.nix ];
+    };
+
+    discrete.configuration = {
+      imports = [ ./nvidia-discrete.nix ];
+    };
   };
   # services.openssh = {
   #   enable = true;
@@ -45,26 +54,24 @@ in
 
   # Enable NVIDIA proprietary drivers
   services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.prime = {
-    # sync.enable = true;
-    offload = {
-      enable = true;
-      enableOffloadCmd = true;
-    };
-    # dedicated
-    intelBusId = "PCI:0:2:0";
-    nvidiaBusId = "PCI:1:0:0";
-  };
+  # hardware.nvidia.prime = {
+  #   # sync.enable = true;
+  #   offload = {
+  #     enable = true;
+  #     enableOffloadCmd = true;
+  #   };
+  #   # dedicated
+  #   intelBusId = "PCI:0:2:0";
+  #   nvidiaBusId = "PCI:1:0:0";
+  # };
   boot.kernelPackages = pkgs.linuxPackages;
-  # boot.extraModulePackages = [ casperWmi ];
-  # boot.kernelModules = [ "casper-wmi" ];
   # Bootloader.
   boot.kernelParams = [
     # needed to prevent freezing due to hardware issues
     # at 13th gen intel CPUs
     "intel_idle.max_cstate=1"
     "acpi_backlight=native"
-    "nvidia-drm.modeset=0"
+    # "nvidia-drm.modeset=0"
     "nvidia-drm.fbdev=1"
     # "nvidia.NVreg_TemporaryFilePath=/var/tmp"
     # "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
@@ -83,6 +90,10 @@ in
   services.udev.extraRules = ''
     SUBSYSTEM=="pci", ATTR{power/control}="auto"
   '';
+  services.excalibur-control-center = {
+    enable = true;
+    users = [ "kmert" ];
+  };
   services.tlp.enable = true;
   # services.tlp.settings = {
   #   # CPU_ENERGY_PERF_POLICY_ON_AC = "balance_performance";
@@ -113,7 +124,8 @@ in
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   services.geoclue2.enable = true;
-  services.cpupower-gui.enable = true;
+  # TODO: revisit; cpupower-gui 1.0.0 crashes on boot under Python 3.14 argparse.
+  services.cpupower-gui.enable = false;
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "tr_TR.UTF-8";
     LC_IDENTIFICATION = "tr_TR.UTF-8";
@@ -182,10 +194,21 @@ in
     extraGroups = [
       "networkmanager"
       "wheel"
+      "libvirtd"
+      "kvm"
     ];
   };
   programs.steam = {
     enable = true;
+  };
+
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      runAsRoot = true;
+      swtpm.enable = true;
+    };
   };
 
   # In configuration.nix
@@ -236,13 +259,13 @@ in
     sysbench
   ];
 
-  environment.sessionVariables = {
-    # LIBVA_DRIVER_NAME = "nvidia";
-    # LIBVA_DRIVER_NAME = "nvidia";
-    # GBM_BACKEND = "nvidia-drm";
-    # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    NVD_BACKEND = "direct";
-  };
+  # environment.sessionVariables = {
+  #   # LIBVA_DRIVER_NAME = "nvidia";
+  #   # LIBVA_DRIVER_NAME = "nvidia";
+  #   # GBM_BACKEND = "nvidia-drm";
+  #   # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+  #   NVD_BACKEND = "direct";
+  # };
 
   virtualisation = {
     containers.enable = true;
