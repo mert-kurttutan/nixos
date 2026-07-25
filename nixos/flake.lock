@@ -6,11 +6,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1784879494,
-        "narHash": "sha256-wXrPCa67ScivpO1O3p/Lp/+FnId2Nv10D+lf0P/zLNM=",
+        "lastModified": 1784933658,
+        "narHash": "sha256-/teNvFmABDeDFyK1+MkfKc8fUgUp7D7iSBRORZ3uomE=",
         "owner": "mert-kurttutan",
         "repo": "cecc-linux-nix",
-        "rev": "e2c602525b0f4f144699dfa710924c507ef2f1d1",
+        "rev": "d4c559ac564bd449e1ff3a069c15177cb0aea86d",
         "type": "github"
       },
       "original": {
@@ -193,11 +193,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784877405,
-        "narHash": "sha256-W649GocILahx7Vb/JMx834217+OLKBrq014VmC/8+NM=",
+        "lastModified": 1784913159,
+        "narHash": "sha256-JWq0BfjO4ktpH5USfQNQzdvHpIDT8fSKD5K7LvdMRFs=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "32de400b6ac9f43042bca706f4a64f6ad08117e8",
+        "rev": "079a3b5d1aa6a719920a51316253b7d6dd22738d",
         "type": "github"
       },
       "original": {
