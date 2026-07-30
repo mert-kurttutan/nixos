@@ -2,8 +2,8 @@
   imports = [
     ./git.nix
     ./lazygit.nix
+    ./local-bin.nix
     ./ranger.nix
     ./tmux.nix
-    ./dev-shell-init.nix
   ];
 }

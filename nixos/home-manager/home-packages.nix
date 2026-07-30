@@ -9,7 +9,7 @@
     # code-cursor
     # imv
     # mpv
-    # obsidian
+    obsidian
     # pavucontrol
     # teams-for-linux
     # telegram-desktop
