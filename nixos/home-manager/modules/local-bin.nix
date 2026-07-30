@@ -2,8 +2,8 @@
 
 let
   script = ./dev-shell-template.sh;
-  nixDownloadSummary = ../../../scripts/nix-download-summary.nu;
-  normalizeBashShebang = ../../../scripts/normalize-bash-shebang.nu;
+  nixDownloadSummary = ../../scripts/nix-download-summary.nu;
+  normalizeBashShebang = ../../scripts/normalize-bash-shebang.nu;
 in
 {
   home.file.".local/bin/dev-shell-template" = {
