@@ -49,6 +49,7 @@
   #   allowSFTP = true;
   # };
   programs.nix-ld.enable = true;
+  services.envfs.enable = true;
 
   # networking.firewall.allowedTCPPorts = [ 2222 8080 ];
 

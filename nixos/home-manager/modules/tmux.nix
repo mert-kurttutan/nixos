@@ -6,6 +6,7 @@
     mouse = true;
     escapeTime = 0;
     keyMode = "vi";
+    shell = "${pkgs.nushell}/bin/nu";
     terminal = "screen-256color";
     extraConfig = ''
       set -as terminal-features ",alacritty*:RGB"
