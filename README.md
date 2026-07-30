@@ -1,15 +1,8 @@
 # Introduction
 This projects is to store my flake config for my local development machine so that I can have
 a version controlled system for my local tools
-The intended workflow is to update here (controlled with git). The order in which to run the followings is important. Then sync my actual nixos folder with the repo
-then run 
-`sudo nixos-rebuild switch`
+The intended workflow is to update here (controlled with git), then run the system update workflow:
 
-Run the following if you want to remove old generations of nixos:
-`sudo nix-collect-garbage -d`
+`./update-system.nu`
 
-To change the default boot selection for the next reboot, you can use the following command:
-`sudo /run/current-system/bin/switch-to-configuration boot`
-
-
-sudo ./keyboard_control.sh all 255 0 0
+This updates the flake inputs in `nixos/`, syncs the repo config to `/etc/nixos`, runs `sudo nixos-rebuild switch --flake /etc/nixos#nixos`, removes old NixOS generations, and sets the current system as the next boot configuration.
