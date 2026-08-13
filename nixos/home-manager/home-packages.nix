@@ -21,6 +21,7 @@
     # gitbutler
 
     # CLI utils
+    bash-completion
     bc
     bottom
     brightnessctl
@@ -32,6 +33,8 @@
     ffmpeg
     ffmpegthumbnailer
     fzf
+    git
+    git-lfs
     gh
     just
     # git-graph
@@ -41,9 +44,11 @@
     # mediainfo
     microfetch
     playerctl
+    ranger
     ripgrep
     # showmethekey
     # silicon
+    tmux
     udisks
     ueberzugpp
     unzip

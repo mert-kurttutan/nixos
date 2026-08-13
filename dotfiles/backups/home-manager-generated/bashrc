@@ -1,0 +1,35 @@
+export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/.cargo/bin"
+export CUDA_PATH=/nix/store/10j48zqqpwkcmlbg0ri49yyfqk2z2glq-cuda-merged-12.9
+ld-path-python() {
+  export LD_LIBRARY_PATH=/run/opengl-driver/lib:$LD_LIBRARY_PATH
+}
+
+
+# Commands that should be applied only for interactive shells.
+[[ $- == *i* ]] || return
+
+HISTFILESIZE=100000
+HISTSIZE=10000
+
+shopt -s histappend
+shopt -s extglob
+shopt -s globstar
+shopt -s checkjobs
+
+alias -- k=kubectl
+alias -- urldecode='python3 -c '\''import sys, urllib.parse as ul; print(ul.unquote_plus(sys.stdin.read()))'\'''
+alias -- urlencode='python3 -c '\''import sys, urllib.parse as ul; print(ul.quote_plus(sys.stdin.read()))'\'''
+
+if [[ ! -v BASH_COMPLETION_VERSINFO ]]; then
+  . "/nix/store/6crifm3ly0rlvvdbp5vx09i6lj0gcx78-bash-completion-2.18.0/etc/profile.d/bash_completion.sh"
+fi
+
+function lg() {
+    export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
+    command lazygit "$@"
+    if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
+      cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
+      rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
+    fi
+}
+
