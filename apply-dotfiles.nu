@@ -32,4 +32,24 @@ def main [
     cp $source $target
     print $"installed ($target)"
   }
+
+  install_zellij_sidebar_plugin $home $dry_run
+}
+
+def install_zellij_sidebar_plugin [
+  home: path
+  dry_run: bool
+] {
+  let plugin_url = "https://github.com/mert-kurttutan/zellij-sidebar-plugin/releases/latest/download/vertical-sidebar.wasm"
+  let target = ($home | path join ".config/zellij/plugins/vertical-sidebar.wasm")
+  let target_dir = ($target | path dirname)
+
+  if $dry_run {
+    print $"($plugin_url) -> ($target)"
+    return
+  }
+
+  mkdir $target_dir
+  ^curl --fail --location --silent --show-error --output $target $plugin_url
+  print $"installed ($target)"
 }
