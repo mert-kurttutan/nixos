@@ -1,5 +1,10 @@
 export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/.cargo/bin"
 
+if [[ -d "$HOME/.local/share/fnm" ]]; then
+  export PATH="$HOME/.local/share/fnm:$PATH"
+  eval "$(fnm env --shell bash)"
+fi
+
 ld-path-python() {
   export LD_LIBRARY_PATH=/run/opengl-driver/lib:$LD_LIBRARY_PATH
 }
