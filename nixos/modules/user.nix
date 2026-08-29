@@ -1,17 +1,15 @@
-{ pkgs, user, ... }:
+{ user, ... }:
+
 {
-  programs.zsh.enable = true;
-
-  users = {
-    defaultUserShell = pkgs.zsh;
-    users.${user} = {
-      isNormalUser = true;
-      extraGroups = [
-        "wheel"
-        "networkmanager"
-      ];
-    };
+  # Define a user account. Don't forget to set a password with `passwd`.
+  users.users.${user} = {
+    isNormalUser = true;
+    description = "Mert Kurttutan";
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "libvirtd"
+      "kvm"
+    ];
   };
-
-  services.getty.autologinUser = user;
 }

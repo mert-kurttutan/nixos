@@ -1,17 +1,17 @@
 {
   imports = [
     ./audio.nix
-    ./bluetooth.nix
     ./boot.nix
-    ./env.nix
-    ./home-manager.nix
-    ./kernel.nix
-    ./mime.nix
-    ./net.nix
-    ./nh.nix
+    ./desktop.nix
+    ./fonts.nix
+    ./hardware.nix
+    ./locale.nix
+    ./networking.nix
     ./nix.nix
+    ./packages.nix
+    ./power.nix
+    ./services.nix
     ./user.nix
-    ./zram.nix
-    ./protonvpn.nix
+    ./virtualisation.nix
   ];
 }
