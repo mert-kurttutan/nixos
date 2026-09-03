@@ -3,7 +3,7 @@
 # Prepare a local tt-metal development machine.
 #
 # The script installs basic Ubuntu packages, ensures Nix is installed, clones
-# the tt-metal and ttnn-profile repositories under projects/tenstorrent,
+# the tt-metal, tt-docs, and ttnn-profile repositories under projects/tenstorrent,
 # and installs Codex.
 #
 # After this script finishes, build tt-metal manually:
@@ -206,6 +206,7 @@ def clone-git-repos [] {
   let projects_dir = "projects/tenstorrent"
 
   clone-or-update-repo tt-metal git@github.com:mert-kurttutan/tt-metal.git $"($projects_dir)/tt-metal" --branch nix-dev --recurse-submodules
+  clone-or-update-repo tt-docs git@github.com:mert-kurttutan/tt-docs.git $"($projects_dir)/tt-docs"
   clone-or-update-repo ttnn-profile git@github.com:mert-kurttutan/ttnn-profile.git $"($projects_dir)/ttnn-profile"
 }
 
