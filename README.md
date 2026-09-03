@@ -16,7 +16,7 @@ To also update the flake inputs in `nixos/` before rebuilding:
 For a non-Nix remote machine, install the dotfiles with:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/mert-kurttutan/nixos/main/scripts/install-dotfiles-remote.sh | bash
+curl -fsSL https://raw.githubusercontent.com/mert-kurttutan/nixos/main/scripts/install-dotfiles-remote.nu | nu
 ```
 
 The script clones this repo into a temporary directory, copies `dotfiles/` into `$HOME`, skips `dotfiles/backups/`, downloads the Zellij sidebar plugin, patches the plugin path for the remote user's home directory, and removes the temporary clone afterward.
@@ -24,12 +24,12 @@ The script clones this repo into a temporary directory, copies `dotfiles/` into 
 Required remote commands:
 
 ```bash
-git curl sed bash
+git curl nu
 ```
 
 Override the source repo or branch if needed:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/mert-kurttutan/nixos/main/scripts/install-dotfiles-remote.sh \
-  | NIXOS_CONF_REPO_URL=https://github.com/mert-kurttutan/nixos.git NIXOS_CONF_REPO_REF=main bash
+curl -fsSL https://raw.githubusercontent.com/mert-kurttutan/nixos/main/scripts/install-dotfiles-remote.nu \
+  | NIXOS_CONF_REPO_URL=https://github.com/mert-kurttutan/nixos.git NIXOS_CONF_REPO_REF=main nu
 ```
