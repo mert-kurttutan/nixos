@@ -15,7 +15,8 @@ def main [
   }
 
   print $"Formatting Nix files in ($flake_dir)"
-  nix fmt $flake_dir
+  cd $flake_dir
+  nix fmt .
 
   print $"Syncing ($flake_dir) to ($target_dir)"
   sudo rsync -a --delete $"($flake_dir)/" $"($target_dir)/"
