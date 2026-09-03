@@ -14,6 +14,9 @@ def main [
     print "Skipping flake input update"
   }
 
+  print $"Formatting Nix files in ($flake_dir)"
+  nix fmt $flake_dir
+
   print $"Syncing ($flake_dir) to ($target_dir)"
   sudo rsync -a --delete $"($flake_dir)/" $"($target_dir)/"
   # --exclude='flake.lock'
