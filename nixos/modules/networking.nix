@@ -24,6 +24,9 @@
   # Enable networking.
   networking.networkmanager.enable = true;
 
+  # Permit SSH only over the private Tailscale interface.
+  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 22 ];
+
   networking.hosts = {
     "127.0.0.2" = [ "other-localhost" ];
   };

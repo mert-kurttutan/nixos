@@ -16,7 +16,12 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  # Enable SSH access for remote terminal sessions.
+  # Access is intended to be through the private Tailscale network; do not
+  # configure router port forwarding for SSH.
+  services.openssh = {
+    enable = true;
+    openFirewall = false;
+  };
   services.tailscale.enable = true;
 }

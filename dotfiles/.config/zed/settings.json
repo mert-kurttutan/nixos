@@ -39,6 +39,9 @@
     "provider": "copilot",
   },
   "icon_theme": "VSCode Icons for Zed (Dark Official Icons)",
+  "markdown_preview": {
+    "limit_content_width": false,
+  },
   "ensure_final_newline_on_save": false,
   "languages": {
     "Nix": {
