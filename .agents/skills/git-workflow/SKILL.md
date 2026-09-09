@@ -1,6 +1,6 @@
 ---
 name: git-workflow
-description: Safely manage Git changes, synchronization, commits, and pushes while preserving unrelated work.
+description: Apply a secure, robust Git workflow for verified remote synchronization, safe commits, and controlled pushes.
 ---
 
 # Git workflow
