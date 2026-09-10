@@ -156,7 +156,6 @@
     deno
 
     # AI
-    inputs.claude-code.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
     warp-terminal
     inputs.codex.packages.${pkgs.stdenv.hostPlatform.system}.codex
     inputs.typst.packages.${pkgs.stdenv.hostPlatform.system}.default

@@ -7,7 +7,6 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    claude-code.url = "github:sadjow/claude-code-nix/08c857d3f5ecbf16b8de8c7d6b83d277a064a406";
     codex.url = "github:mert-kurttutan/codex-cli-nix/use-zstd-assets";
     zed.url = "github:mert-kurttutan/zed-nix";
     typst.url = "github:mert-kurttutan/typst-nix";
@@ -21,7 +20,6 @@
       self,
       nixpkgs,
       home-manager,
-      claude-code,
       codex,
       zed,
       typst,
