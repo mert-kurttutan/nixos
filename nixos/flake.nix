@@ -2,13 +2,13 @@
   description = "NixOS configuration of Mert Kurttutan";
 
   inputs = {
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
-    # home-manager.url = "github:nix-community/home-manager/release-25.11";
-    home-manager.url = "github:nix-community/home-manager/master";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     claude-code.url = "github:sadjow/claude-code-nix/08c857d3f5ecbf16b8de8c7d6b83d277a064a406";
-    codex.url = "github:sadjow/codex-cli-nix/bde8e6641e076855e84e47b5e4b5ff4a106004bc";
+    codex.url = "github:mert-kurttutan/codex-cli-nix/use-zstd-assets";
     zed.url = "github:mert-kurttutan/zed-nix";
     typst.url = "github:mert-kurttutan/typst-nix";
     typst.inputs.nixpkgs.follows = "nixpkgs";
