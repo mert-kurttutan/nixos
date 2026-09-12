@@ -3,7 +3,7 @@
 # Install Nix and the shared user-wide tools for a standard GitHub Codespace.
 # Run scripts/install-nushell.sh first from Bash.
 def main [] {
-  let tools_flake = "github:mert-kurttutan/nixos?dir=common"
+  let tools_flake = "github:mert-kurttutan/nixos?dir=nixos/common"
   let daemon_nix = "/nix/var/nix/profiles/default/bin/nix"
   let user_nix = $"($env.HOME)/.nix-profile/bin/nix"
   let nix_installed = (which nix | is-not-empty) or ($daemon_nix | path exists) or ($user_nix | path exists)

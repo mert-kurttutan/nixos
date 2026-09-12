@@ -7,7 +7,7 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    common.url = "path:../common";
+    common.url = "path:./common";
     common.inputs.nixpkgs.follows = "nixpkgs";
     zed.url = "github:mert-kurttutan/zed-nix";
     typst.url = "github:mert-kurttutan/typst-nix";
