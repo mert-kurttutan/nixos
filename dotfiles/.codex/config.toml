@@ -1,0 +1,28 @@
+model = "gpt-5.6-luna"
+model_reasoning_effort = "medium"
+
+# Allow Nix to use its normal per-user cache while Codex runs in workspace-write mode.
+[sandbox_workspace_write]
+writable_roots = [
+  "/home/kmert/.cache",
+]
+
+[plugins."github@openai-curated"]
+enabled = true
+
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
+gpt-6-astra = 4
+
+[projects."/tmp"]
+trust_level = "trusted"
+
+[projects."/home/kmert"]
+trust_level = "trusted"
+
+[projects."/home/kmert/projects"]
+trust_level = "trusted"
+
+[projects."/home/kmert/projects/nixos-conf"]
+trust_level = "trusted"
