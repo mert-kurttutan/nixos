@@ -48,4 +48,5 @@ def main [] {
   }
 
   print "Codespace user environment is ready."
+  print $"Reload Bash before using the profile: source ($env.HOME)/.nix-profile/etc/profile.d/nix.sh"
 }
