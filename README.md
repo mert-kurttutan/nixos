@@ -55,7 +55,7 @@ codex --version
 ```
 
 The setup installs single-user Nix, enables flakes, and installs the shared
-tools from `codespace/flake.nix`, including Codex. It does not modify
+tools from `common/flake.nix`, including Codex. It does not modify
 `scripts/prepare-tt.nu`.
 
 Override the source repo or branch if needed:

@@ -33,9 +33,7 @@
     ffmpeg
     ffmpegthumbnailer
     fzf
-    git
     git-lfs
-    gh
     just
     # git-graph
     htop
@@ -45,7 +43,6 @@
     microfetch
     playerctl
     ranger
-    ripgrep
     # showmethekey
     # silicon
     tmux
@@ -77,8 +74,6 @@
     p7zip
 
     # utils
-    ripgrep # recursively searches directories for a regex pattern
-    jq # A lightweight and flexible command-line JSON processor
     yq-go # yaml processor https://github.com/mikefarah/yq
     fzf # A command-line fuzzy finder
 
@@ -157,7 +152,6 @@
 
     # AI
     warp-terminal
-    inputs.codex.packages.${pkgs.stdenv.hostPlatform.system}.codex
     inputs.typst.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # rust
@@ -192,6 +186,5 @@
     # aws-sam-cli
 
     # shell
-    nushell
   ];
 }

@@ -7,7 +7,8 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    codex.url = "github:mert-kurttutan/codex-cli-nix/use-zstd-assets";
+    common.url = "path:../common";
+    common.inputs.nixpkgs.follows = "nixpkgs";
     zed.url = "github:mert-kurttutan/zed-nix";
     typst.url = "github:mert-kurttutan/typst-nix";
     typst.inputs.nixpkgs.follows = "nixpkgs";
@@ -20,7 +21,7 @@
       self,
       nixpkgs,
       home-manager,
-      codex,
+      common,
       zed,
       typst,
       git-xet,
@@ -51,7 +52,12 @@
                 home-manager.useUserPackages = true;
                 home-manager.backupFileExtension = "backup";
                 home-manager.extraSpecialArgs = inputs // specialArgs;
-                home-manager.users.${username} = import ./home-manager/home.nix;
+                home-manager.users.${username} = {
+                  imports = [
+                    common.homeModules.default
+                    ./home-manager/home.nix
+                  ];
+                };
               }
             ];
           };

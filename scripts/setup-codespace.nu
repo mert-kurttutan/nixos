@@ -3,7 +3,7 @@
 # Install Nix and the shared user-wide tools for a standard GitHub Codespace.
 # Run scripts/install-nushell.sh first from Bash.
 def main [] {
-  let tools_flake = "github:mert-kurttutan/nixos?dir=codespace"
+  let tools_flake = "github:mert-kurttutan/nixos?dir=common"
   let daemon_nix = "/nix/var/nix/profiles/default/bin/nix"
   let user_nix = $"($env.HOME)/.nix-profile/bin/nix"
   let nix_installed = (which nix | is-not-empty) or ($daemon_nix | path exists) or ($user_nix | path exists)
@@ -34,7 +34,7 @@ def main [] {
     "experimental-features = nix-command flakes\n" | save --append $nix_config
   }
 
-  print "Installing shared tools from the nixos-conf Codespace flake..."
+  print "Installing shared tools from the nixos-conf common flake..."
   ^$nix --extra-experimental-features "nix-command flakes" profile add --priority 4 $"($tools_flake)#userTools"
 
   let profile_bin = ($env.HOME | path join ".nix-profile" "bin")
