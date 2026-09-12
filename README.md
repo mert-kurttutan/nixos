@@ -27,6 +27,33 @@ Required remote commands:
 git curl nu
 ```
 
+## GitHub Codespace user environment
+
+The Codespace connection workflow is provided by:
+
+```bash
+nu scripts/connect-github-codespace.nu mert-kurttutan/codespace-tools
+```
+
+After connecting to the standard Codespace image, run:
+
+```bash
+bash scripts/install-nushell.sh
+nu scripts/setup-codespace.nu
+```
+
+The same setup can be run without copying repository files into the target
+project after the scripts are published:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/mert-kurttutan/nixos/main/scripts/install-nushell.sh | bash
+curl -fsSL https://raw.githubusercontent.com/mert-kurttutan/nixos/main/scripts/setup-codespace.nu | nu -c 'source /dev/stdin; main'
+```
+
+The setup installs single-user Nix, enables flakes, and installs the shared
+tools from `codespace/flake.nix`, including Codex. It does not modify
+`scripts/prepare-tt.nu`.
+
 Override the source repo or branch if needed:
 
 ```bash
