@@ -16,7 +16,8 @@ To also update the flake inputs in `nixos/` before rebuilding:
 For a non-Nix remote machine, install the dotfiles with:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/mert-kurttutan/nixos/main/scripts/install-dotfiles-remote.nu | nu
+curl -fsSL https://raw.githubusercontent.com/mert-kurttutan/nixos/main/scripts/install-dotfiles-remote.nu \
+  | nu -c 'source /dev/stdin; main'
 ```
 
 The script clones this repo into a temporary directory, copies `dotfiles/` into `$HOME`, skips `dotfiles/backups/`, downloads the Zellij sidebar plugin, patches the plugin path for the remote user's home directory, and removes the temporary clone afterward.
@@ -39,7 +40,6 @@ After connecting to the standard Codespace image, run:
 
 ```bash
 bash scripts/install-nushell.sh
-nu scripts/setup-codespace.nu
 ```
 
 The same setup can be run without copying repository files into the target
@@ -48,6 +48,10 @@ project after the scripts are published:
 ```bash
 curl -fsSL https://raw.githubusercontent.com/mert-kurttutan/nixos/main/scripts/install-nushell.sh | bash
 curl -fsSL https://raw.githubusercontent.com/mert-kurttutan/nixos/main/scripts/setup-codespace.nu | nu -c 'source /dev/stdin; main'
+exec bash -l
+nix --version
+nu --version
+codex --version
 ```
 
 The setup installs single-user Nix, enables flakes, and installs the shared
