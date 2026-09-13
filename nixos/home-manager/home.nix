@@ -11,7 +11,6 @@ in
   imports = [
     ./home-packages.nix
   ];
-  programs.home-manager.enable = true;
   # TODO please change the username & home directory to your own
   home.username = "kmert";
   home.homeDirectory = "/home/kmert";
