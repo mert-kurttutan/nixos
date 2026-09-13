@@ -11,19 +11,25 @@
 #     /home/kmert/.koyeb/bin/koyeb login
 # - The CLI config defaults to ~/.koyeb.yaml unless KOYEB_CONFIG is set.
 
-let pubkey_file = "/run/media/kmert/kmert-store/credentials/.ssh/koyeb.pub"
-let koyeb_bin = "/home/kmert/.koyeb/bin/koyeb"
+export def deploy [] {
+  let pubkey_file = "/run/media/kmert/kmert-store/credentials/.ssh/koyeb.pub"
+  let koyeb_bin = "/home/kmert/.koyeb/bin/koyeb"
 
-if not ($koyeb_bin | path exists) {
-  print $"koyeb CLI was not found: ($koyeb_bin)"
-  exit 1
+  if not ($koyeb_bin | path exists) {
+    error make { msg: $"koyeb CLI was not found: ($koyeb_bin)" }
+  }
+
+  if not ($pubkey_file | path exists) {
+    error make { msg: $"Public key file not found: ($pubkey_file)" }
+  }
+
+  let public_key = (open $pubkey_file | str trim)
+
+  ^$koyeb_bin app init sshd --docker "koyeb/ubuntu-ssh-server" --ports "22:tcp" --proxy-ports "22:tcp" --env $"PUBLIC_KEY=($public_key)" --instance-type "gpu-tenstorrent-n300s" --regions "na" --min-scale 1 --max-scale 1
 }
 
-if not ($pubkey_file | path exists) {
-  print $"Public key file not found: ($pubkey_file)"
-  exit 1
+export def main [] {
+  deploy
 }
 
-let public_key = (open $pubkey_file | str trim)
-
-^$koyeb_bin app init sshd --docker "koyeb/ubuntu-ssh-server" --ports "22:tcp" --proxy-ports "22:tcp" --env $"PUBLIC_KEY=($public_key)" --instance-type "gpu-tenstorrent-n300s" --regions "na" --min-scale 1 --max-scale 1
+export alias koyeb-deploy = main

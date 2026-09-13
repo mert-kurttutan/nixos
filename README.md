@@ -11,6 +11,31 @@ To also update the flake inputs in `nixos/` before rebuilding:
 
 `./update-system.nu --update-flake`
 
+## Terminal workflow shortcuts
+
+Install the executable helper scripts into `~/.local/bin`:
+
+```bash
+nu scripts/sync-local-bin.nu
+```
+
+The `work` command provides short, memorable entry points for the remote
+development and local VM workflows:
+
+```text
+work codespace connect [owner/repository]
+work codespace setup
+work tt prepare
+work tt build
+work koyeb deploy
+work vm list
+work vm start <name>
+work vm stop <name>
+work vm console <name>
+```
+
+Run `work help` to see the available commands.
+
 ## Remote dotfile install without Nix
 
 For a non-Nix remote machine, install the dotfiles with:

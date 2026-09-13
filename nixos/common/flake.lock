@@ -1,6 +1,6 @@
 {
   "nodes": {
-    "codex": {
+    "binary-flakes": {
       "inputs": {
         "flake-utils": "flake-utils",
         "nixpkgs": [
@@ -8,17 +8,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1789062001,
-        "narHash": "sha256-H2nr5DxnJlXVaO0wtUdaZJUYhb9lqPfpZwjNylVgWug=",
+        "lastModified": 1789250160,
+        "narHash": "sha256-fys2WPWbVrYoQaX1m0OwLfKPQRhVW9pcEv217i1xP9s=",
         "owner": "mert-kurttutan",
-        "repo": "codex-cli-nix",
-        "rev": "86e72849642924415cb858dce3d4fc1daa88f0e9",
+        "repo": "binary-flakes",
+        "rev": "dfe045a207afb8cffd5fb5152b437349912f8c6b",
         "type": "github"
       },
       "original": {
         "owner": "mert-kurttutan",
-        "ref": "use-zstd-assets",
-        "repo": "codex-cli-nix",
+        "repo": "binary-flakes",
         "type": "github"
       }
     },
@@ -55,7 +54,7 @@
     },
     "root": {
       "inputs": {
-        "codex": "codex",
+        "binary-flakes": "binary-flakes",
         "nixpkgs": "nixpkgs"
       }
     },

@@ -1,6 +1,9 @@
 #!/usr/bin/env nu
 
 # Open an interactive SSH shell in a GitHub Codespace.
+# The default repository is used when no repository argument is provided.
+#
+# Default: mert-kurttutan/codespace-tools
 #
 # Examples:
 #   ./scripts/connect-github-codespace.nu owner/repository
@@ -8,6 +11,8 @@
 #   ./scripts/connect-github-codespace.nu --command 'uname -a' owner/repository
 #   ./scripts/connect-github-codespace.nu --branch main owner/repository
 # Nushell does not use a backslash for line continuation; run commands on one line.
+
+const default_repository = "mert-kurttutan/codespace-tools"
 
 def fail [message: string] {
   error make { msg: $message }
@@ -24,21 +29,7 @@ def command-error [result: record, command: string] {
   fail $"($command) failed: ($details)"
 }
 
-def current-repository [] {
-  let result = (do { ^git remote get-url origin } | complete)
-
-  if $result.exit_code != 0 {
-    return null
-  }
-
-  $result.stdout
-  | str trim
-  | str replace --regex '^git@github\.com:' ''
-  | str replace --regex '^https://github\.com/' ''
-  | str replace --regex '\.git$' ''
-}
-
-def main [
+export def main [
   repository?: string
   --codespace(-c): string
   --branch(-b): string
@@ -49,13 +40,13 @@ def main [
   require-command gh
 
   let repo = if ($repository | is-empty) {
-    current-repository
+    $default_repository
   } else {
     $repository
   }
 
   if ($codespace | is-empty) and ($repo | is-empty) {
-    fail "provide a repository, --codespace, or run from a GitHub repository"
+    fail "provide a repository or --codespace"
   }
 
   let selected_codespace = if not ($codespace | is-empty) {
@@ -123,3 +114,5 @@ def main [
   print $"connecting to GitHub Codespace ($destination)"
   run-external gh ...$args
 }
+
+export alias codespace-connect = main

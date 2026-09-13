@@ -1,9 +1,28 @@
 {
   "nodes": {
-    "cecc-linux": {
+    "binary-flakes": {
       "inputs": {
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1789250160,
+        "narHash": "sha256-fys2WPWbVrYoQaX1m0OwLfKPQRhVW9pcEv217i1xP9s=",
+        "owner": "mert-kurttutan",
+        "repo": "binary-flakes",
+        "rev": "dfe045a207afb8cffd5fb5152b437349912f8c6b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mert-kurttutan",
+        "repo": "binary-flakes",
+        "type": "github"
+      }
+    },
+    "cecc-linux": {
+      "inputs": {
+        "flake-utils": "flake-utils_2",
+        "nixpkgs": "nixpkgs_2"
       },
       "locked": {
         "lastModified": 1789031834,
@@ -19,32 +38,11 @@
         "type": "github"
       }
     },
-    "codex": {
-      "inputs": {
-        "flake-utils": "flake-utils_2",
-        "nixpkgs": [
-          "common",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1789062001,
-        "narHash": "sha256-H2nr5DxnJlXVaO0wtUdaZJUYhb9lqPfpZwjNylVgWug=",
-        "owner": "mert-kurttutan",
-        "repo": "codex-cli-nix",
-        "rev": "86e72849642924415cb858dce3d4fc1daa88f0e9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mert-kurttutan",
-        "ref": "use-zstd-assets",
-        "repo": "codex-cli-nix",
-        "type": "github"
-      }
-    },
     "common": {
       "inputs": {
-        "codex": "codex",
+        "binary-flakes": [
+          "binary-flakes"
+        ],
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -131,28 +129,10 @@
         "type": "github"
       }
     },
-    "flake-utils_5": {
-      "inputs": {
-        "systems": "systems_5"
-      },
-      "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
     "git-xet": {
       "inputs": {
         "flake-utils": "flake-utils_3",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1770973302,
@@ -175,11 +155,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789230132,
-        "narHash": "sha256-u7aiV01Iu11NGOjXbxoCCrew6n0vo/LnULqOvZa+Agc=",
+        "lastModified": 1789273010,
+        "narHash": "sha256-E7dWx+utzZPpqQsBUd5sMimKTWMEEbTKFD+ya99Shps=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "17bf375751d457efa3897c7c3d68106616b1d469",
+        "rev": "fdc36b12804b0179b24a5ffd282e4c95c37072e2",
         "type": "github"
       },
       "original": {
@@ -190,6 +170,19 @@
       }
     },
     "nixpkgs": {
+      "locked": {
+        "lastModified": 1789149629,
+        "narHash": "sha256-eQUZVehWLDBbpBR2rq6DnuRee1ULT6Y675RhsYDSjYI=",
+        "rev": "eaad089433ca2bb662274377d33df3d0e51ef28b",
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1072397.eaad089433ca/nixexprs.tar.zst"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst"
+      }
+    },
+    "nixpkgs_2": {
       "locked": {
         "lastModified": 1789006805,
         "narHash": "sha256-q+GdZ3yq4Y2LXHRK0vKTM32Hwy7RCgUgy+hjwZLI5pY=",
@@ -202,7 +195,7 @@
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst"
       }
     },
-    "nixpkgs_2": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1770843696,
         "narHash": "sha256-LovWTGDwXhkfCOmbgLVA10bvsi/P8eDDpRudgk68HA8=",
@@ -218,26 +211,13 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
-      "locked": {
-        "lastModified": 1789006805,
-        "narHash": "sha256-q+GdZ3yq4Y2LXHRK0vKTM32Hwy7RCgUgy+hjwZLI5pY=",
-        "rev": "8ce4ef6cb6f871616146b9fe26d2a5ae594e94fe",
-        "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1070770.8ce4ef6cb6f8/nixexprs.tar.zst"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst"
-      }
-    },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1789006805,
-        "narHash": "sha256-q+GdZ3yq4Y2LXHRK0vKTM32Hwy7RCgUgy+hjwZLI5pY=",
-        "rev": "8ce4ef6cb6f871616146b9fe26d2a5ae594e94fe",
+        "lastModified": 1789149629,
+        "narHash": "sha256-eQUZVehWLDBbpBR2rq6DnuRee1ULT6Y675RhsYDSjYI=",
+        "rev": "eaad089433ca2bb662274377d33df3d0e51ef28b",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1070770.8ce4ef6cb6f8/nixexprs.tar.zst"
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1072397.eaad089433ca/nixexprs.tar.zst"
       },
       "original": {
         "type": "tarball",
@@ -246,13 +226,13 @@
     },
     "root": {
       "inputs": {
+        "binary-flakes": "binary-flakes",
         "cecc-linux": "cecc-linux",
         "common": "common",
         "git-xet": "git-xet",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs_3",
-        "typst": "typst",
-        "zed": "zed"
+        "nixpkgs": "nixpkgs_4",
+        "typst": "typst"
       }
     },
     "systems": {
@@ -315,21 +295,6 @@
         "type": "github"
       }
     },
-    "systems_5": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
     "typst": {
       "inputs": {
         "flake-utils": "flake-utils_4",
@@ -348,25 +313,6 @@
       "original": {
         "owner": "mert-kurttutan",
         "repo": "typst-nix",
-        "type": "github"
-      }
-    },
-    "zed": {
-      "inputs": {
-        "flake-utils": "flake-utils_5",
-        "nixpkgs": "nixpkgs_4"
-      },
-      "locked": {
-        "lastModified": 1789032216,
-        "narHash": "sha256-1YgD0gs7gidBhOmbYyFvPXlAEdrlRtLqdvkq7bE5d0M=",
-        "owner": "mert-kurttutan",
-        "repo": "zed-nix",
-        "rev": "4d62552d2067943d50c5700045d6d5a570202f7f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mert-kurttutan",
-        "repo": "zed-nix",
         "type": "github"
       }
     }

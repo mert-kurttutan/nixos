@@ -9,7 +9,7 @@
     # code-cursor
     # imv
     # mpv
-    obsidian
+    inputs.binary-flakes.packages.${pkgs.stdenv.hostPlatform.system}.obsidian
     # pavucontrol
     # teams-for-linux
     # telegram-desktop
@@ -176,7 +176,7 @@
     helix
     # marimo
 
-    inputs.zed.packages.${pkgs.stdenv.hostPlatform.system}.zed
+    inputs.binary-flakes.packages.${pkgs.stdenv.hostPlatform.system}.zed
 
     # browsers
     brave

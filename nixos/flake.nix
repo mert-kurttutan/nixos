@@ -9,7 +9,8 @@
     };
     common.url = "path:./common";
     common.inputs.nixpkgs.follows = "nixpkgs";
-    zed.url = "github:mert-kurttutan/zed-nix";
+    common.inputs.binary-flakes.follows = "binary-flakes";
+    binary-flakes.url = "github:mert-kurttutan/binary-flakes";
     typst.url = "github:mert-kurttutan/typst-nix";
     typst.inputs.nixpkgs.follows = "nixpkgs";
     git-xet.url = "github:mert-kurttutan/git-xet-nix";
@@ -22,7 +23,7 @@
       nixpkgs,
       home-manager,
       common,
-      zed,
+      binary-flakes,
       typst,
       git-xet,
       cecc-linux,

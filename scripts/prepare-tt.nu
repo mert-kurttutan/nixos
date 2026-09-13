@@ -232,10 +232,12 @@ def install-codex [] {
   ^bash -lc 'export PATH="$HOME/.local/share/fnm:$PATH"; eval "$(fnm env --shell bash)"; fnm use latest >/dev/null; codex --version'
 }
 
-def main [] {
+export def main [] {
   prepare-folders
   install-apt-packages
   install-nix
   clone-git-repos
   install-codex
 }
+
+export alias tt-prepare = main

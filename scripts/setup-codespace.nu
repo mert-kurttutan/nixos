@@ -2,7 +2,7 @@
 
 # Install Nix and the shared user-wide tools for a standard GitHub Codespace.
 # Run scripts/install-nushell.sh first from Bash.
-def main [] {
+export def main [] {
   let tools_flake = "github:mert-kurttutan/nixos?dir=nixos/common"
   let daemon_nix = "/nix/var/nix/profiles/default/bin/nix"
   let user_nix = $"($env.HOME)/.nix-profile/bin/nix"
@@ -50,3 +50,5 @@ def main [] {
   print "Codespace user environment is ready."
   print $"Reload Bash before using the profile: source ($env.HOME)/.nix-profile/etc/profile.d/nix.sh"
 }
+
+export alias codespace-setup = main
