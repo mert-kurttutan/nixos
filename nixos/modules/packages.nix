@@ -8,7 +8,6 @@
     # The Nano editor is also installed by default.
     s-tui
     stress
-    pkgs.home-manager
     gparted
     devenv
     vim

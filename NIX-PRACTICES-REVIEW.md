@@ -55,13 +55,6 @@ Reference: <https://wiki.nixos.org/wiki/Flakes/en>
 
 ## Lower-priority cleanup
 
-These are not urgent modernization changes, but are worth considering in a
-separate cleanup:
-
-- `nixos/modules/packages.nix` installs `pkgs.home-manager` even though Home
-  Manager is already integrated as a NixOS module. Confirm whether the
-  standalone CLI is intentionally needed before removing it.
-
 ## Already aligned observations
 
 - The main flake uses the official NixOS channel tarball URL for `nixpkgs` and
