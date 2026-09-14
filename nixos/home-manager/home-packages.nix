@@ -32,7 +32,6 @@
     fd
     ffmpeg
     ffmpegthumbnailer
-    fzf
     git-lfs
     just
     # git-graph
@@ -42,7 +41,7 @@
     # mediainfo
     microfetch
     playerctl
-    ranger
+    yazi
     # showmethekey
     # silicon
     tmux
@@ -65,7 +64,6 @@
     # Other
     nix-prefetch-scripts
     kubectl
-    nnn # terminal file manager
 
     # archives
     zip
@@ -151,7 +149,7 @@
     deno
 
     # AI
-    warp-terminal
+    # warp-terminal
     inputs.typst.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # rust
