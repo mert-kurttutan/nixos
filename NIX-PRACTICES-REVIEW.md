@@ -7,21 +7,6 @@ applied to the NixOS configuration.
 
 ## Recommended follow-up changes
 
-### Use the system package set in Home Manager
-
-`nixos/flake.nix` currently enables `home-manager.useUserPackages`, but leaves
-`home-manager.useGlobalPkgs` at its default of `false`. The Home Manager NixOS
-module recommends enabling `useGlobalPkgs` when Home Manager is integrated into
-NixOS. This avoids a second Nixpkgs evaluation and keeps system and Home Manager
-package configuration consistent.
-
-Before applying this, verify that the system-level `nixpkgs.config.allowUnfree`
-setting is sufficient for every Home Manager package. The duplicate
-`nixpkgs.config.allowUnfree` in `nixos/home-manager/home-packages.nix` could then
-be removed.
-
-Reference: <https://home-manager.dev/manual/unstable/nix-flakes/nixos.html>
-
 ### Replace `packageOverrides` with an overlay
 
 `nixos/modules/hardware.nix` customizes Mesa using
