@@ -7,18 +7,6 @@ applied to the NixOS configuration.
 
 ## Recommended follow-up changes
 
-### Replace `packageOverrides` with an overlay
-
-`nixos/modules/hardware.nix` customizes Mesa using
-`nixpkgs.config.packageOverrides`. Current Nixpkgs documentation describes
-overlays as the more powerful and distributable mechanism, with `final` used
-for dependencies and `prev` used to access the package being overridden.
-
-The Mesa customization can be expressed as a `nixpkgs.overlays` entry while
-retaining the existing `overrideAttrs` behavior.
-
-Reference: <https://nixos.org/manual/nixpkgs/unstable/#chap-overlays>
-
 ### `legacyPackages` is still the correct package-set output
 
 The use of `nixpkgs.legacyPackages.${system}` in `nixos/flake.nix` is not a

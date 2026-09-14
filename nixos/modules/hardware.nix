@@ -33,23 +33,25 @@
   '';
 
   # Mesa application-specific driver defaults.
-  nixpkgs.config.packageOverrides = pkgs: {
-    mesa = pkgs.mesa.overrideAttrs (oldAttrs: {
-      postInstall = (oldAttrs.postInstall or "") + ''
-        cat > $out/share/drirc.d/00-mesa-defaults.conf <<EOF
-        <?xml version="1.0" standalone="yes"?>
-        <driconf>
-          <device>
-            <application name="Brave Browser" executable="brave">
-              <option name="adaptive_sync" value="false" />
-              <option name="no_fp16" value="true" />
-            </application>
-          </device>
-        </driconf>
-        EOF
-      '';
-    });
-  };
+  nixpkgs.overlays = [
+    (_final: prev: {
+      mesa = prev.mesa.overrideAttrs (oldAttrs: {
+        postInstall = (oldAttrs.postInstall or "") + ''
+          cat > $out/share/drirc.d/00-mesa-defaults.conf <<EOF
+          <?xml version="1.0" standalone="yes"?>
+          <driconf>
+            <device>
+              <application name="Brave Browser" executable="brave">
+                <option name="adaptive_sync" value="false" />
+                <option name="no_fp16" value="true" />
+              </application>
+            </device>
+          </driconf>
+          EOF
+        '';
+      });
+    })
+  ];
 
   # environment.sessionVariables = {
   #   # LIBVA_DRIVER_NAME = "nvidia";
