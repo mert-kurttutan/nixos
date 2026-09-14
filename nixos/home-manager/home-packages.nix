@@ -25,30 +25,28 @@
     bc
     bottom
     brightnessctl
+    cliphist
     dive
     dua
-    cliphist
     fastfetch
     fd
     ffmpeg
     ffmpegthumbnailer
     git-lfs
-    just
-    inputs.binary-flakes.packages.${pkgs.stdenv.hostPlatform.system}.proton-pass-cli
-    # git-graph
     htop
+    just
     # hyprpicker
-    ntfs3g
     # mediainfo
     microfetch
+    ntfs3g
     playerctl
+    inputs.binary-flakes.packages.${pkgs.stdenv.hostPlatform.system}.proton-pass-cli
     yazi
     # showmethekey
     # silicon
     tmux
     udisks
     ueberzugpp
-    unzip
     w3m
     wget
     wl-clipboard
@@ -63,91 +61,91 @@
     python311
 
     # Other
-    nix-prefetch-scripts
     kubectl
+    nix-prefetch-scripts
 
     # archives
-    zip
-    xz
-    unzip
     p7zip
+    unzip
+    xz
+    zip
 
     # utils
-    yq-go # yaml processor https://github.com/mikefarah/yq
     fzf # A command-line fuzzy finder
+    yq-go # yaml processor https://github.com/mikefarah/yq
 
     pandoc
 
     # networking tools
-    mtr # A network diagnostic tool
-    vnstat # A network traffic monitor
-    iperf3
-    dnsutils # `dig` + `nslookup`
-    ldns # replacement of `dig`, it provide the command `drill`
     aria2 # A lightweight multi-protocol & multi-source command-line download utility
-    socat # replacement of openbsd-netcat
-    nmap # A utility for network discovery and security auditing
+    dnsutils # `dig` + `nslookup`
     ipcalc # it is a calculator for the IPv4/v6 addresses
+    iperf3
+    ldns # replacement of `dig`, it provide the command `drill`
+    mtr # A network diagnostic tool
+    nmap # A utility for network discovery and security auditing
     sniffnet
+    socat # replacement of openbsd-netcat
+    vnstat # A network traffic monitor
     # misc
     file
-    which
-    tree
-    gnused
-    gnutar
     gawk
-    zstd
+    gnused
     gnupg
+    gnutar
+    tree
+    which
+    zstd
 
     # nix related
     #
     # it provides the command `nom` works just like `nix`
     # with more details log output
-    nix-output-monitor
-    nil
-    devenv
     cachix
+    devenv
+    nil
+    nix-output-monitor
     # productivity
-    hugo # static site generator
     glow # markdown previewer in terminal
+    hugo # static site generator
     # discord-ptb
     # rustdesk
 
     btop # replacement of htop/nmon
-    iotop # io monitoring
     iftop # network monitoring
-    powertop # power monitoring
+    iotop # io monitoring
     powerstat
+    powertop # power monitoring
 
     # web
     postman
 
     # # system call monitoring
-    strace # system call monitoring
-    ltrace # library call monitoring
     lsof # list open files
+    ltrace # library call monitoring
+    strace # system call monitoring
 
     # system tools
-    sysstat
-    lm_sensors # for `sensors` command
-    ethtool
-    pciutils # lspci
-    usbutils # lsusb
     docker-compose
-    podman-desktop
+    ethtool
     kubernetes
+    kubernetes-helm
+    lm_sensors # for `sensors` command
+    pciutils # lspci
+    podman-desktop
     # minikube # TODO: revisit; currently conflicts with kubectl via bin/kubectl
     sccache
-    kubernetes-helm
+    sysstat
+    usbutils # lsusb
 
     # vm
-    virt-manager
     gnome-boxes
     qemu
+    virt-manager
 
     # js
-    fnm
     deno
+    fnm
 
     # AI
     # warp-terminal
@@ -157,8 +155,8 @@
     rustup
 
     # c/c++
-    gcc
     (lib.hiPrio clang)
+    gcc
     meson
 
     # cuda
@@ -171,9 +169,9 @@
     uv
 
     # ide/editors
-    vscode
     helix
     # marimo
+    vscode
 
     inputs.binary-flakes.packages.${pkgs.stdenv.hostPlatform.system}.zed
 
