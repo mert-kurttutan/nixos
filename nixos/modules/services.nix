@@ -1,9 +1,9 @@
-{ user, ... }:
+{ username, ... }:
 
 {
   services.excalibur-control-center = {
     enable = true;
-    users = [ user ];
+    users = [ username ];
   };
 
   services.vnstat.enable = true;

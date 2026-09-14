@@ -39,8 +39,8 @@
         nixos =
           let
             username = "kmert";
-            user = username; # Define user variable
-            specialArgs = { inherit username inputs user; };
+            homeDirectory = "/home/${username}";
+            specialArgs = { inherit username homeDirectory inputs; };
           in
           nixpkgs.lib.nixosSystem {
             inherit specialArgs;
@@ -52,7 +52,7 @@
               {
                 home-manager.useUserPackages = true;
                 home-manager.backupFileExtension = "backup";
-                home-manager.extraSpecialArgs = inputs // specialArgs;
+                home-manager.extraSpecialArgs = specialArgs;
                 home-manager.users.${username} = {
                   imports = [
                     common.homeModules.default

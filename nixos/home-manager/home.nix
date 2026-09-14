@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, username, homeDirectory, ... }:
 let
   zedNvidia = pkgs.writeShellScriptBin "zed-nvidia" ''
     exec env ZED_DEVICE_ID=0x2820 zed "$@"
@@ -11,9 +11,8 @@ in
   imports = [
     ./home-packages.nix
   ];
-  # TODO please change the username & home directory to your own
-  home.username = "kmert";
-  home.homeDirectory = "/home/kmert";
+  home.username = username;
+  home.homeDirectory = homeDirectory;
 
   # set cursor size and dpi for 4k monitor
   xresources.properties = {

@@ -58,10 +58,6 @@ Reference: <https://wiki.nixos.org/wiki/Flakes/en>
 These are not urgent modernization changes, but are worth considering in a
 separate cleanup:
 
-- `home.username`, `home.homeDirectory`, and the NixOS user name are repeated
-  in separate files. Passing one shared value through module arguments would
-  reduce drift, but should be done carefully because Home Manager expects the
-  home path to match the actual account.
 - `nixos/modules/packages.nix` installs `pkgs.home-manager` even though Home
   Manager is already integrated as a NixOS module. Confirm whether the
   standalone CLI is intentionally needed before removing it.

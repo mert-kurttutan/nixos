@@ -1,8 +1,8 @@
-{ user, ... }:
+{ username, ... }:
 
 {
   # Define a user account. Don't forget to set a password with `passwd`.
-  users.users.${user} = {
+  users.users.${username} = {
     isNormalUser = true;
     description = "Mert Kurttutan";
     extraGroups = [
