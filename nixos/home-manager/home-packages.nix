@@ -34,6 +34,7 @@
     ffmpegthumbnailer
     git-lfs
     just
+    inputs.binary-flakes.packages.${pkgs.stdenv.hostPlatform.system}.proton-pass-cli
     # git-graph
     htop
     # hyprpicker
