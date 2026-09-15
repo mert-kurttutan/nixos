@@ -37,6 +37,7 @@ in
 
   home.sessionVariables = {
     CUDA_PATH = "${pkgs.cudatoolkit}";
+    PROTON_PASS_LINUX_KEYRING = "dbus";
   };
 
   xdg.desktopEntries.zed-nvidia = {
