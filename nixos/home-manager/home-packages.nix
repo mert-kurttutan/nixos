@@ -8,6 +8,7 @@
     # imv
     # mpv
     inputs.binary-flakes.packages.${pkgs.stdenv.hostPlatform.system}.obsidian
+    inputs.binary-flakes.packages.${pkgs.stdenv.hostPlatform.system}.proton-pass
     # pavucontrol
     # teams-for-linux
     # telegram-desktop

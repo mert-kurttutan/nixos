@@ -4,6 +4,7 @@
 
 {
   inputs,
+  pkgs,
   ...
 }:
 
@@ -31,6 +32,11 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "26.11"; # Did you read the comment?
+
+  environment.sessionVariables = {
+    CUDA_PATH = "${pkgs.cudatoolkit}";
+    PROTON_PASS_LINUX_KEYRING = "dbus";
+  };
 
   # systemd.additionalUpstreamSystemUnits = [ "debug-shell.service" ];
 

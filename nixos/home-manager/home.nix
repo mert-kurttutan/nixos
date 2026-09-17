@@ -1,4 +1,9 @@
-{ pkgs, username, homeDirectory, ... }:
+{
+  pkgs,
+  username,
+  homeDirectory,
+  ...
+}:
 let
   zedNvidia = pkgs.writeShellScriptBin "zed-nvidia" ''
     exec env ZED_DEVICE_ID=0x2820 zed "$@"
@@ -34,11 +39,6 @@ in
   # the home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "25.11";
-
-  home.sessionVariables = {
-    CUDA_PATH = "${pkgs.cudatoolkit}";
-    PROTON_PASS_LINUX_KEYRING = "dbus";
-  };
 
   xdg.desktopEntries.zed-nvidia = {
     name = "Zed (NVIDIA)";
