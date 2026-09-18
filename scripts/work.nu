@@ -23,7 +23,7 @@ def show-help [] {
   print "work - shortcuts for development environments"
   print ""
   print "Codespaces:"
-  print "  work codespace connect [owner/repository]"
+  print "  work codespace connect [owner/repository] [--branch <name>]"
   print "  work codespace setup"
   print ""
   print "Tenstorrent:"
@@ -40,13 +40,21 @@ def show-help [] {
   print "  work vm console <name>"
 }
 
-def codespace [action: string, target?: string] {
+def codespace [action: string, target?: string, branch: string = ""] {
   match $action {
     "connect" | "shell" => {
       if ($target | is-empty) {
-        codespace-connect
+        if ($branch | is-empty) {
+          codespace-connect
+        } else {
+          codespace-connect --branch $branch
+        }
       } else {
-        codespace-connect $target
+        if ($branch | is-empty) {
+          codespace-connect $target
+        } else {
+          codespace-connect --branch $branch $target
+        }
       }
     }
     "setup" => codespace-setup
@@ -102,6 +110,7 @@ def main [
   area?: string
   action?: string
   target?: string
+  --branch(-b): string = ""
   --help(-h)
 ] {
   if $help or ($area | is-empty) {
@@ -112,7 +121,7 @@ def main [
   let selected_action = $action | default ""
 
   match $area {
-    "codespace" | "cs" => (codespace $selected_action $target)
+    "codespace" | "cs" => (codespace $selected_action $target $branch)
     "tt" => (tenstorrent $selected_action)
     "koyeb" | "gpu" => (koyeb $selected_action)
     "vm" => (vm $selected_action $target)
