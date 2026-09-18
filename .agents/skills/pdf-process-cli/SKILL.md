@@ -17,5 +17,7 @@ with-env { DATALAB_API_KEY: 'pass://Dev/Datalab main/API Key' } {
 }
 ```
 
+You must alwasys use prefer the html over the pdf output when investiating a PDF. The typst output is optional and can be used for further processing or formatting.
+
 Do not use Bash-style `\` continuations in Nushell. Never print or expose the
 resolved API key.
