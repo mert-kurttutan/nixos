@@ -1,5 +1,5 @@
 [terminal.shell]
-program = "/etc/profiles/per-user/kmert/bin/nu"
+program = "nu"
 
 [window]
 opacity = 1.0
