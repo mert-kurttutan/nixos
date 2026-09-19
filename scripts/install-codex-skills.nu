@@ -1,13 +1,13 @@
 #!/usr/bin/env nu
 
-const source_dir = "/home/kmert/projects/nixos-conf/.agents/skills"
-
 def main [] {
   let home = ($env.HOME? | default "" | path expand)
   if $home == "" {
     error make { msg: "HOME is not set" }
   }
 
+  let script_dir = ($env.CURRENT_FILE | path dirname | path expand)
+  let source_dir = ($script_dir | path join ".." ".agents" "skills" | path expand)
   let codex_home = ($env.CODEX_HOME? | default ($home | path join ".codex") | path expand)
   let target_dir = ($codex_home | path join "skills")
 
