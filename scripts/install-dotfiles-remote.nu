@@ -76,7 +76,7 @@ def install-zellij-plugin [
   let plugin_target = ($home | path join ".config/zellij/plugins/vertical-sidebar.wasm")
   let plugin_target_dir = ($plugin_target | path dirname)
   let zellij_config = ($home | path join ".config/zellij/config.kdl")
-  let expected_plugin_path = "file:/home/kmert/.config/zellij/plugins/vertical-sidebar.wasm"
+  let plugin_path_pattern = 'file:[^"]*/\.config/zellij/plugins/vertical-sidebar\.wasm'
   let actual_plugin_path = $"file:($home)/.config/zellij/plugins/vertical-sidebar.wasm"
 
   print $"installing Zellij sidebar plugin into ($plugin_target)"
@@ -85,7 +85,7 @@ def install-zellij-plugin [
 
   if ($zellij_config | path exists) {
     open --raw $zellij_config
-    | str replace --all $expected_plugin_path $actual_plugin_path
+    | str replace --all --regex $plugin_path_pattern $actual_plugin_path
     | save --force $zellij_config
   }
 }
