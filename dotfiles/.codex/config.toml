@@ -15,7 +15,7 @@ enabled = true
 # Allow Nix to use its normal per-user cache while Codex runs in workspace-write mode.
 [sandbox_workspace_write]
 writable_roots = [
-  "/home/kmert/.cache",
+  "~/.cache",
 ]
 
 [plugins."github@openai-curated"]
