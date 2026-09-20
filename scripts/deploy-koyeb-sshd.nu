@@ -8,12 +8,13 @@
 # - That installer places the binary under ~/.koyeb/bin, so this script calls the
 #   discovered absolute path below instead of relying on PATH.
 # - Authenticate before deploying:
-#     /home/kmert/.koyeb/bin/koyeb login
+#     ~/.koyeb/bin/koyeb login
 # - The CLI config defaults to ~/.koyeb.yaml unless KOYEB_CONFIG is set.
 
 export def deploy [] {
-  let pubkey_file = "/run/media/kmert/kmert-store/credentials/.ssh/koyeb.pub"
-  let koyeb_bin = "/home/kmert/.koyeb/bin/koyeb"
+  let home = ($env.HOME | path expand)
+  let pubkey_file = ($env.KOYEB_PUBKEY_FILE? | default ($home | path join ".ssh" "koyeb.pub") | path expand)
+  let koyeb_bin = ($home | path join ".koyeb" "bin" "koyeb")
 
   if not ($koyeb_bin | path exists) {
     error make { msg: $"koyeb CLI was not found: ($koyeb_bin)" }
