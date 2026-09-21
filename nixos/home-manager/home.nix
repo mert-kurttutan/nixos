@@ -8,9 +8,6 @@ let
   zedNvidia = pkgs.writeShellScriptBin "zed-nvidia" ''
     exec env ZED_DEVICE_ID=0x2820 zed "$@"
   '';
-  steamNvidia = pkgs.writeShellScriptBin "steam-nvidia" ''
-    exec nvidia-offload steam "$@"
-  '';
 in
 {
   imports = [
@@ -26,7 +23,6 @@ in
   };
   # Packages that should be installed to the user profile.
   home.packages = [
-    steamNvidia
     zedNvidia
   ];
 
@@ -61,21 +57,4 @@ in
     ];
   };
 
-  xdg.desktopEntries.steam-nvidia = {
-    name = "Steam (NVIDIA)";
-    genericName = "Game Launcher";
-    comment = "Launch Steam on the NVIDIA GPU";
-    exec = "steam-nvidia %U";
-    icon = "steam";
-    terminal = false;
-    type = "Application";
-    categories = [
-      "Game"
-      "Network"
-    ];
-    mimeType = [
-      "x-scheme-handler/steam"
-      "x-scheme-handler/steamlink"
-    ];
-  };
 }

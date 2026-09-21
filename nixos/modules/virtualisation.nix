@@ -1,8 +1,6 @@
 { pkgs, ... }:
 
 {
-  programs.steam.enable = true;
-
   virtualisation = {
     libvirtd = {
       enable = true;
