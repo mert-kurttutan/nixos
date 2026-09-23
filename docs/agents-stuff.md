@@ -1,0 +1,1 @@
+For long term process with while loop, there are certain processes where user input/approval is crucial. start identifying those which do and dont ereuqire explicilt user approval/intervention. e.g. the template selection when producing tyspt from pdf file inside /home/kmert/projects/nixos-conf/.agents/skills/typst/SKILL.md

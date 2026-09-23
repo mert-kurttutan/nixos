@@ -8,7 +8,7 @@ description: Process PDFs for investigations and research workflows using pdf-pr
 Use this tool whenever a workflow requires studying or investigating a PDF.
 Prefer HTML for insight and content analysis; it preserves a more useful,
 searchable structure than the source PDF. Request block-level JSON alongside
-HTML with `--json`. Typst output is optional.
+HTML with `--json`.
 
 In Nushell, use `with-env` and pass the secret reference through `pass-cli run`:
 
@@ -19,8 +19,7 @@ with-env { DATALAB_API_KEY: 'pass://Dev/Datalab main/API Key' } {
 ```
 
 Use the generated HTML when investigating a PDF. The JSON file contains the
-document block tree, including block types and bounding boxes. Add `--typst`
-when Typst output is useful for further processing or formatting.
+document block tree, including block types and bounding boxes.
 
 Do not use Bash-style `\` continuations in Nushell. Never print or expose the
 resolved API key.
