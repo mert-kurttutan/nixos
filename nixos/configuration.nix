@@ -5,6 +5,7 @@
 {
   inputs,
   pkgs,
+  homeDirectory,
   ...
 }:
 
@@ -36,6 +37,8 @@
   environment.sessionVariables = {
     CUDA_PATH = "${pkgs.cudatoolkit}";
     PROTON_PASS_LINUX_KEYRING = "dbus";
+    # Proton Pass SSH-agent socket for Git/OpenSSH sessions.
+    SSH_AUTH_SOCK = "${homeDirectory}/.ssh/proton-pass-agent.sock";
   };
 
   # systemd.additionalUpstreamSystemUnits = [ "debug-shell.service" ];
