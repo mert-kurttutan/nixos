@@ -36,7 +36,7 @@
     {
       formatter.${system} = pkgs.nixfmt-tree;
       nixosConfigurations = {
-        nixos =
+        excalibur =
           let
             username = "kmert";
             homeDirectory = "/home/${username}";
@@ -47,7 +47,7 @@
             system = system;
 
             modules = [
-              ./configuration.nix
+              ./hosts/excalibur
               home-manager.nixosModules.home-manager
               {
                 home-manager.useGlobalPkgs = true;

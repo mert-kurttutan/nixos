@@ -2,7 +2,7 @@
 
 const flake_dir = path self nixos
 const target_dir = "/etc/nixos"
-const host = "nixos"
+const host = "excalibur"
 
 def main [
   --update-flake # Update flake inputs before syncing and rebuilding.

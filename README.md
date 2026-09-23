@@ -5,11 +5,21 @@ The intended workflow is to update here (controlled with git), then run the syst
 
 `./update-system.nu`
 
-This syncs the repo config to `/etc/nixos`, runs `sudo nixos-rebuild switch --flake /etc/nixos#nixos`, removes old NixOS generations, and sets the current system as the next boot configuration.
+This syncs the repo config to `/etc/nixos`, runs `sudo nixos-rebuild switch --flake /etc/nixos#excalibur`, removes old NixOS generations, and sets the current system as the next boot configuration.
 
 To also update the flake inputs in `nixos/` before rebuilding:
 
 `./update-system.nu --update-flake`
+
+## NixOS hosts
+
+`nixos/hosts/excalibur/` contains this machine's hardware scan, boot and GPU
+settings, and hostname. Shared settings remain in `nixos/configuration.nix` and
+`nixos/modules/`. The flake exposes this machine as `nixosConfigurations.excalibur`.
+
+For another machine, generate its own `hardware-configuration.nix`, add a new
+directory under `nixos/hosts/`, and give it a separate `nixosConfigurations`
+entry in `nixos/flake.nix`.
 
 ## Terminal workflow shortcuts
 
