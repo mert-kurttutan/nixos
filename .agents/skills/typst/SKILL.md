@@ -9,6 +9,8 @@ Use idiomatic Typst for document structure, layout, styling, and reusable behavi
 
 Keep prose paragraphs on a single source line when practical. Remove hard-wrapped newlines that Typst treats as spaces and stray blank lines that split a sentence. Preserve blank lines between paragraphs and line breaks needed for headings, lists, equations, code, or layout.
 
+Use Hayagriva YAML for bibliographies, with keyed citations (`@key` or `#cite(<key>)`) and `#bibliography(...)`. Use BibLaTeX `.bib` ONLY WHEN STRICTLY NECESSARY because a concrete requirement makes YAML unsuitable. When migrating an existing paper, verify metadata and citation order against the source.
+
 Unless the user explicitly asks for one of these approaches:
 
 - Do not use LaTeX hacks or insert LaTeX-generated content to reproduce a result.
