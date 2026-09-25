@@ -11,6 +11,10 @@ Keep prose paragraphs on a single source line when practical. Remove hard-wrappe
 
 Use Hayagriva YAML for bibliographies, with keyed citations (`@key` or `#cite(<key>)`) and `#bibliography(...)`. Use BibLaTeX `.bib` ONLY WHEN STRICTLY NECESSARY because a concrete requirement makes YAML unsuitable. When migrating an existing paper, verify metadata and citation order against the source.
 
+## Labeled matrices
+
+When producing a matrix with row or column labels, use the accompanying `labeled-matrix.typ` module. Copy it into the Typst project and import `labeled-matrix`; pass the row labels, column labels, and a matching rectangular array of entries to `labeled-matrix(...)`. Its single table keeps labels, entries, and brackets aligned. Use its optional `prefix` for expressions such as `$=$`, and wrap the result in an equation when a number is needed.
+
 Unless the user explicitly asks for one of these approaches:
 
 - Do not use LaTeX hacks or insert LaTeX-generated content to reproduce a result.

@@ -12,7 +12,7 @@ pass-cli ssh-agent daemon start
 pass-cli ssh-agent daemon stop
 ```
 
-Check status with `pass-cli ssh-agent daemon status`. Set the socket for SSH:
+Check status with `pass-cli ssh-agent daemon status` outside the sandbox; the sandbox hides the host daemon PID and can falsely report a stale socket. Set the socket for SSH:
 
 ```sh
 export SSH_AUTH_SOCK="$HOME/.ssh/proton-pass-agent.sock"

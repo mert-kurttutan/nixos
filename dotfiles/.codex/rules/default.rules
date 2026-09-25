@@ -1,0 +1,3 @@
+prefix_rule(pattern=["uv", "run"], decision="allow")
+prefix_rule(pattern=["/run/current-system/sw/bin/bash", "-c", "nix build .#codex"], decision="allow")
+prefix_rule(pattern=["pass-cli", "ssh-agent", "daemon", "status"], decision="allow", justification="Check the Proton Pass SSH agent in the host process namespace")
