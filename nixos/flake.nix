@@ -48,6 +48,15 @@
 
             modules = [
               ./hosts/excalibur
+              {
+                nixpkgs.overlays = [
+                  (final: prev: {
+                    ltrace = prev.ltrace.overrideAttrs (_: {
+                      doCheck = false;
+                    });
+                  })
+                ];
+              }
               home-manager.nixosModules.home-manager
               {
                 home-manager.useGlobalPkgs = true;
