@@ -11,6 +11,33 @@ def ensure-line [file: path, line: string] {
   }
 }
 
+def remove-venv-activation-line [file: path] {
+  if not ($file | path exists) {
+    return
+  }
+
+  let existing = open --raw $file
+  let cleaned = ($existing | str replace --all --regex '(?m)^[ \t]*(?:source|\.)[ \t]+/opt/venv/bin/activate[ \t]*(?:\r?\n|$)' "")
+  if $cleaned == $existing {
+    return
+  }
+
+  try {
+    $cleaned | save --force $file
+  } catch {|err|
+    if $file == "/etc/bash.bashrc" and (which sudo | is-not-empty) {
+      let sed_expression = '/^[[:space:]]*\(source\|[.]\)[[:space:]]*\/opt\/venv\/bin\/activate[[:space:]]*$/d'
+      try {
+        ^sudo sed -i $sed_expression $file
+      } catch {|sudo_err|
+        print $"Could not remove the automatic /opt/venv activation from ($file): ($sudo_err.msg)"
+      }
+    } else {
+      error make { msg: $err.msg }
+    }
+  }
+}
+
 export def main [
   --preserve-project-environment # Keep the inherited project environment.
 ] {
@@ -105,6 +132,10 @@ export def main [
     }
     ensure-line $nu_env $safe_hide_library_path
   }
+
+  print "Removing automatic /opt/venv activation from Bash startup files..."
+  remove-venv-activation-line ($env.HOME | path join ".bashrc")
+  remove-venv-activation-line "/etc/bash.bashrc"
 
   print "Remote VM user environment is ready."
   print "Reload the Nushell environment in the current interactive session:"
