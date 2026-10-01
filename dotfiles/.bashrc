@@ -1,5 +1,24 @@
 export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/.cargo/bin"
 
+# Keep host-provided project environments out of normal shells. Project
+# variables belong to the project's Nix development shell instead.
+for variable in \
+  PYTHON_ENV_DIR \
+  PYTHONPATH \
+  TT_METAL_HOME \
+  VIRTUAL_ENV \
+  TT_FORGE_PYTHON_VERSION \
+  TT_FORGE_VENV \
+  TT_INSTALLER_VENV \
+  TT_LANG_VENV \
+  TT_VLLM_VENV \
+  VLLM_TT_PLUGIN_SRC \
+  OMPI_PREFIX \
+  OMPI_VERSION
+do
+  unset "$variable"
+done
+
 if [[ -d "$HOME/.local/share/fnm" ]]; then
   export PATH="$HOME/.local/share/fnm:$PATH"
   eval "$(fnm env --shell bash)"

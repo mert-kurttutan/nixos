@@ -38,6 +38,41 @@ def remove-venv-activation-line [file: path] {
   }
 }
 
+def project-environment-variable-names [] {
+  [
+    PYTHON_ENV_DIR
+    PYTHONPATH
+    TT_METAL_HOME
+    VIRTUAL_ENV
+    TT_FORGE_PYTHON_VERSION
+    TT_FORGE_VENV
+    TT_INSTALLER_VENV
+    TT_LANG_VENV
+    TT_VLLM_VENV
+    VLLM_TT_PLUGIN_SRC
+    OMPI_PREFIX
+    OMPI_VERSION
+  ]
+}
+
+def remove-inherited-project-environment [] {
+  let bashrc = ($env.HOME | path join ".bashrc")
+  let bash_lines = (project-environment-variable-names | each {|name| $"unset ($name)"})
+  for line in $bash_lines {
+    ensure-line $bashrc $line
+  }
+
+  let nu_env = ($nu.default-config-dir | path join "env.nu")
+  let nu_lines = (project-environment-variable-names | each {|name| $"hide-env ($name)"})
+  for line in $nu_lines {
+    ensure-line $nu_env $line
+  }
+
+  for name in (project-environment-variable-names) {
+    hide-env $name
+  }
+}
+
 export def main [
   --preserve-project-environment # Keep the inherited project environment.
 ] {
@@ -119,6 +154,9 @@ export def main [
   ensure-line $nu_env $path_line
 
   if not $preserve_project_environment {
+    print "Removing inherited project environment variables from normal shells..."
+    remove-inherited-project-environment
+
     print "Disabling the global project library path for normal shells..."
     ensure-line ($env.HOME | path join ".bashrc") "unset LD_LIBRARY_PATH"
     ensure-line ($env.HOME | path join ".profile") "unset LD_LIBRARY_PATH"
