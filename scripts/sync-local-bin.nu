@@ -30,7 +30,7 @@ for source in (glob --no-dir $"($script_dir)/*") {
 # these files retain the suffix because `work.nu` imports them by path.
 for module in [
   "connect-github-codespace.nu"
-  "setup-codespace.nu"
+  "setup-remote-vm.nu"
   "prepare-tt.nu"
   "deploy-koyeb-sshd.nu"
 ] {

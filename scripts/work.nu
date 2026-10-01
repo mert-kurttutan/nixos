@@ -5,7 +5,7 @@
 #   nu scripts/sync-local-bin.nu
 
 use ./connect-github-codespace.nu [codespace-connect]
-use ./setup-codespace.nu [codespace-setup]
+use ./setup-remote-vm.nu [remote-vm-setup]
 use ./prepare-tt.nu [tt-prepare]
 use ./deploy-koyeb-sshd.nu [koyeb-deploy]
 
@@ -57,7 +57,7 @@ def codespace [action: string, target?: string, branch: string = ""] {
         }
       }
     }
-    "setup" => codespace-setup
+    "setup" => remote-vm-setup
     _ => (fail $"unknown Codespace action: ($action)")
   }
 }

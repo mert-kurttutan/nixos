@@ -82,7 +82,7 @@ project after the scripts are published:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/mert-kurttutan/nixos/main/scripts/install-nushell.sh | bash
-curl -fsSL https://raw.githubusercontent.com/mert-kurttutan/nixos/main/scripts/setup-codespace.nu | nu -c 'source /dev/stdin; main'
+curl -fsSL https://raw.githubusercontent.com/mert-kurttutan/nixos/main/scripts/setup-remote-vm.nu | nu -c 'source /dev/stdin; main'
 exec bash -l
 nix --version
 nu --version
@@ -92,6 +92,12 @@ codex --version
 The setup installs single-user Nix, enables flakes, and installs the shared
 tools from `nixos/common/flake.nix`, including Codex. It does not modify
 `scripts/prepare-tt.nu`.
+
+The remote VM setup also installs the repository dotfiles and copies the
+Codex skills from `.agents/skills/` into the user's Codex skills directory.
+By default it removes the inherited global `LD_LIBRARY_PATH` from future Bash
+and Nushell sessions; pass `--preserve-project-environment` when running locally
+inside a project-specific environment.
 
 Override the source repo or branch if needed:
 
