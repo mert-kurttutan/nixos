@@ -14,7 +14,7 @@ def ensure-line [file: path, line: string] {
 export def main [
   --preserve-project-environment # Keep the inherited project environment.
 ] {
-  if not $preserve_project_environment {
+  if not $preserve_project_environment and ($env.LD_LIBRARY_PATH? | is-not-empty) {
     hide-env LD_LIBRARY_PATH
   }
 
@@ -92,7 +92,15 @@ export def main [
     print "Disabling the global project library path for normal shells..."
     ensure-line ($env.HOME | path join ".bashrc") "unset LD_LIBRARY_PATH"
     ensure-line ($env.HOME | path join ".profile") "unset LD_LIBRARY_PATH"
-    ensure-line $nu_env "hide-env LD_LIBRARY_PATH"
+    let safe_hide_library_path = "if ($env.LD_LIBRARY_PATH? | is-not-empty) { hide-env LD_LIBRARY_PATH }"
+    if ($nu_env | path exists) {
+      let existing_nu_env = (open --raw $nu_env)
+      let normalized_nu_env = ($existing_nu_env | str replace --regex '(?m)^hide-env LD_LIBRARY_PATH$' $safe_hide_library_path)
+      if $normalized_nu_env != $existing_nu_env {
+        $normalized_nu_env | save --force $nu_env
+      }
+    }
+    ensure-line $nu_env $safe_hide_library_path
   }
 
   print "Remote VM user environment is ready."
