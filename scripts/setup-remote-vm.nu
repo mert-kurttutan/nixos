@@ -77,6 +77,7 @@ export def main [
   let nu_config = ($nu_config_dir | path join "config.nu")
   let nu_env = ($nu_config_dir | path join "env.nu")
   mkdir $nu_config_dir
+  let path_line = ('$env.PATH = ($env.PATH | prepend "' + $profile_bin + '")')
   let legacy_path = $"path add \"($profile_bin)\""
   if ($nu_config | path exists) {
     let existing_nu_config = (open --raw $nu_config)
@@ -87,6 +88,8 @@ export def main [
     }
   }
   ensure-line $nu_config $"$env.PATH = \($env.PATH | prepend \"($profile_bin)\"\)"
+
+  ensure-line $nu_env $path_line
 
   if not $preserve_project_environment {
     print "Disabling the global project library path for normal shells..."
@@ -104,10 +107,9 @@ export def main [
   }
 
   print "Remote VM user environment is ready."
-  let nix_profile = ($env.HOME | path join ".nix-profile" "etc" "profile.d" "nix.sh")
-  print "Reload Bash before using the profile (run this from Bash, not Nushell):"
-  print $"  source ($nix_profile)"
-  print "Nushell users should start a new Nushell instead; do not source nix.sh from Nushell."
+  print "Reload the Nushell environment in the current interactive session:"
+  print $"  source ($nu_env)"
+  print "Alternatively, start a new Nushell session."
 }
 
 export alias remote-vm-setup = main
