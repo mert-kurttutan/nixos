@@ -69,7 +69,9 @@ def remove-inherited-project-environment [] {
   }
 
   for name in (project-environment-variable-names) {
-    hide-env $name
+    if ($env | columns | any {|variable| $variable == $name }) {
+      hide-env $name
+    }
   }
 }
 
