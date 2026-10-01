@@ -104,7 +104,10 @@ export def main [
   }
 
   print "Remote VM user environment is ready."
-  print $"Reload Bash before using the profile: source ($env.HOME)/.nix-profile/etc/profile.d/nix.sh"
+  let nix_profile = ($env.HOME | path join ".nix-profile" "etc" "profile.d" "nix.sh")
+  print "Reload Bash before using the profile (run this from Bash, not Nushell):"
+  print $"  source ($nix_profile)"
+  print "Nushell users should start a new Nushell instead; do not source nix.sh from Nushell."
 }
 
 export alias remote-vm-setup = main
