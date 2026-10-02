@@ -25,24 +25,19 @@ sudo apt-get update
 echo "Installing repository prerequisites..."
 sudo apt-get install -y ca-certificates curl gnupg lsb-release
 
-codename="$(lsb_release -sc 2>/dev/null || true)"
-if [[ -z "$codename" ]]; then
-  codename="${VERSION_CODENAME:-}"
-fi
+echo "Removing the paid deb.griffo.io repository, if present..."
+sudo rm -f \
+  /etc/apt/sources.list.d/deb.griffo.io.list \
+  /etc/apt/keyrings/deb.griffo.io.gpg
 
-if [[ -z "$codename" ]]; then
-  echo "Unable to detect Debian/Ubuntu codename." >&2
-  exit 1
-fi
-
-echo "Adding deb.griffo.io signing key..."
+echo "Adding the public Nushell repository signing key..."
 sudo install -d -m 0755 /etc/apt/keyrings
-curl -fsSL https://deb.griffo.io/EA0F721D231FDD3A0A17B9AC7808B4DD62C41256.asc \
-  | sudo gpg --dearmor --yes -o /etc/apt/keyrings/deb.griffo.io.gpg
+curl -fsSL https://apt.fury.io/nushell/gpg.key \
+  | sudo gpg --dearmor --yes -o /etc/apt/keyrings/fury-nushell.gpg
 
-echo "Adding deb.griffo.io apt repository for ${codename}..."
-echo "deb [signed-by=/etc/apt/keyrings/deb.griffo.io.gpg] https://deb.griffo.io/apt ${codename} main" \
-  | sudo tee /etc/apt/sources.list.d/deb.griffo.io.list >/dev/null
+echo "Adding the public Nushell apt repository..."
+echo "deb [signed-by=/etc/apt/keyrings/fury-nushell.gpg] https://apt.fury.io/nushell/ /" \
+  | sudo tee /etc/apt/sources.list.d/fury-nushell.list >/dev/null
 
 echo "Updating apt package lists..."
 sudo apt-get update
