@@ -1,4 +1,8 @@
-export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/.cargo/bin"
+export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/.cargo/bin:$HOME/.nix-profile/bin"
+if [[ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]]; then
+  . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+fi
+
 
 # Keep host-provided project environments out of normal shells. Project
 # variables belong to the project's Nix development shell instead.
