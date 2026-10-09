@@ -6,11 +6,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1790861188,
-        "narHash": "sha256-NgHe6nDU8HWxIFBFZtbA9g+MX8rACLXNzxlPywNKNv0=",
+        "lastModified": 1791497335,
+        "narHash": "sha256-ettIUCczQsOj6WUDPiNE71NCq5zZuyCdMnb3BqhD7og=",
         "owner": "mert-kurttutan",
         "repo": "binary-flakes",
-        "rev": "90cf35c7b5906186df3940045c60cf16985b8d3a",
+        "rev": "fa20c6e4a90bbac32953aefc5c44514d9ee12a82",
         "type": "github"
       },
       "original": {

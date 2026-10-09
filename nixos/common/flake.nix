@@ -15,8 +15,17 @@
         "aarch64-linux"
       ];
       forAllSystems = nixpkgs.lib.genAttrs systems;
-      userToolsFor =
+      codexWithPipewireAudioFor =
         system:
+        let
+          pkgs = import nixpkgs { inherit system; };
+        in
+        import ./codex-voice-patch.nix {
+          inherit pkgs;
+          codex = binary-flakes.packages.${system}.codex;
+        };
+      userToolsFor =
+        system: codexPackage:
         let
           pkgs = import nixpkgs { inherit system; };
         in
@@ -37,21 +46,26 @@
               ripgrep
               shellcheck
             ]
-            ++ [ binary-flakes.packages.${system}.codex ];
+            ++ [ codexPackage ];
           ignoreCollisions = true;
           pathsToLink = [ "/bin" ];
         };
     in
     {
       packages = forAllSystems (system: {
-        userTools = userToolsFor system;
+        codexPipewire = codexWithPipewireAudioFor system;
+        userTools = userToolsFor system binary-flakes.packages.${system}.codex;
       });
 
       homeModules.default =
-        { pkgs, ... }:
+        {
+          pkgs,
+          codexPackage ? binary-flakes.packages.${pkgs.stdenv.hostPlatform.system}.codex,
+          ...
+        }:
         {
           home.packages = [
-            (userToolsFor pkgs.stdenv.hostPlatform.system)
+            (userToolsFor pkgs.stdenv.hostPlatform.system codexPackage)
           ];
         };
     };

@@ -58,18 +58,25 @@
                 ];
               }
               home-manager.nixosModules.home-manager
+              ({ config, ... }:
               {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.backupFileExtension = "backup";
-                home-manager.extraSpecialArgs = specialArgs;
+                home-manager.extraSpecialArgs = specialArgs // {
+                  codexPackage =
+                    if config.services.pipewire.enable then
+                      common.packages.${system}.codexPipewire
+                    else
+                      binary-flakes.packages.${system}.codex;
+                };
                 home-manager.users.${username} = {
                   imports = [
                     common.homeModules.default
                     ./home-manager/home.nix
                   ];
                 };
-              }
+              })
             ];
           };
       };

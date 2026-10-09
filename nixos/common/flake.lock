@@ -8,11 +8,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789250160,
-        "narHash": "sha256-fys2WPWbVrYoQaX1m0OwLfKPQRhVW9pcEv217i1xP9s=",
+        "lastModified": 1791497335,
+        "narHash": "sha256-ettIUCczQsOj6WUDPiNE71NCq5zZuyCdMnb3BqhD7og=",
         "owner": "mert-kurttutan",
         "repo": "binary-flakes",
-        "rev": "dfe045a207afb8cffd5fb5152b437349912f8c6b",
+        "rev": "fa20c6e4a90bbac32953aefc5c44514d9ee12a82",
         "type": "github"
       },
       "original": {
