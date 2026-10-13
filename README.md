@@ -35,7 +35,6 @@ development and local VM workflows:
 ```text
 work codespace connect [owner/repository]
 work codespace setup
-work tt prepare
 work tt build
 work koyeb deploy
 work vm list
@@ -91,7 +90,7 @@ codex --version
 
 The setup installs single-user Nix, enables flakes, and installs the shared
 tools from `nixos/common/flake.nix`, including Codex. It does not modify
-`scripts/prepare-tt.nu`.
+the Tenstorrent project.
 
 The remote VM setup also installs the repository dotfiles and copies the
 Codex skills from `.agents/skills/` into the user's Codex skills directory.

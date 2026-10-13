@@ -6,7 +6,6 @@
 
 use ./connect-github-codespace.nu [codespace-connect]
 use ./setup-remote-vm.nu [remote-vm-setup]
-use ./prepare-tt.nu [tt-prepare]
 use ./deploy-koyeb-sshd.nu [koyeb-deploy]
 
 def fail [message: string] {
@@ -27,7 +26,6 @@ def show-help [] {
   print "  work codespace setup"
   print ""
   print "Tenstorrent:"
-  print "  work tt prepare"
   print "  work tt build"
   print ""
   print "Koyeb GPU server:"
@@ -64,11 +62,10 @@ def codespace [action: string, target?: string, branch: string = ""] {
 
 def tenstorrent [action: string] {
   match $action {
-    "prepare" => tt-prepare
     "build" => {
       let project = ($env.HOME | path join "projects/tenstorrent/tt-metal")
       if not ($project | path exists) {
-        fail $"Tenstorrent project not found: ($project); run 'work tt prepare' first"
+        fail $"Tenstorrent project not found: ($project)"
       }
       require-command nix
       cd $project

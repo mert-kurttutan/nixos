@@ -31,7 +31,6 @@ for source in (glob --no-dir $"($script_dir)/*") {
 for module in [
   "connect-github-codespace.nu"
   "setup-remote-vm.nu"
-  "prepare-tt.nu"
   "deploy-koyeb-sshd.nu"
 ] {
   let source = ($script_dir | path join $module)
