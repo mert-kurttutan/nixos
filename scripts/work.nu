@@ -2,11 +2,10 @@
 
 # User-facing dispatcher for remote development and local VM workflows.
 # Install it, together with the other executable scripts, with:
-#   nu scripts/sync-local-bin.nu
+#   nu scripts/utils/sync-local-bin.nu
 
 use ./connect-github-codespace.nu [codespace-connect]
 use ./setup-remote-vm.nu [remote-vm-setup]
-use ./deploy-koyeb-sshd.nu [koyeb-deploy]
 
 def fail [message: string] {
   error make { msg: $message }
@@ -27,9 +26,6 @@ def show-help [] {
   print ""
   print "Tenstorrent:"
   print "  work tt build"
-  print ""
-  print "Koyeb GPU server:"
-  print "  work koyeb deploy"
   print ""
   print "Local libvirt VMs:"
   print "  work vm list"
@@ -75,13 +71,6 @@ def tenstorrent [action: string] {
   }
 }
 
-def koyeb [action: string] {
-  match $action {
-    "deploy" => koyeb-deploy
-    _ => (fail $"unknown Koyeb action: ($action)")
-  }
-}
-
 def vm [action: string, name?: string] {
   require-command virsh
 
@@ -120,7 +109,6 @@ def main [
   match $area {
     "codespace" | "cs" => (codespace $selected_action $target $branch)
     "tt" => (tenstorrent $selected_action)
-    "koyeb" | "gpu" => (koyeb $selected_action)
     "vm" => (vm $selected_action $target)
     "help" => (show-help)
     _ => (fail $"unknown workflow: ($area); run 'work help'")

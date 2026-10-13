@@ -26,7 +26,7 @@ entry in `nixos/flake.nix`.
 Install the executable helper scripts into `~/.local/bin`:
 
 ```bash
-nu scripts/sync-local-bin.nu
+nu scripts/utils/sync-local-bin.nu
 ```
 
 The `work` command provides short, memorable entry points for the remote
@@ -36,7 +36,6 @@ development and local VM workflows:
 work codespace connect [owner/repository]
 work codespace setup
 work tt build
-work koyeb deploy
 work vm list
 work vm start <name>
 work vm stop <name>
@@ -50,7 +49,7 @@ Run `work help` to see the available commands.
 For a non-Nix remote machine, install the dotfiles with:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/mert-kurttutan/nixos/main/scripts/install-dotfiles-remote.nu \
+curl -fsSL https://raw.githubusercontent.com/mert-kurttutan/nixos/main/scripts/utils/install-dotfiles-remote.nu \
   | nu -c 'source /dev/stdin; main'
 ```
 
@@ -73,14 +72,14 @@ nu scripts/connect-github-codespace.nu mert-kurttutan/codespace-tools
 After connecting to the standard Codespace image, run:
 
 ```bash
-bash scripts/install-nushell.sh
+bash scripts/utils/install-nushell.sh
 ```
 
 The same setup can be run without copying repository files into the target
 project after the scripts are published:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/mert-kurttutan/nixos/main/scripts/install-nushell.sh | bash
+curl -fsSL https://raw.githubusercontent.com/mert-kurttutan/nixos/main/scripts/utils/install-nushell.sh | bash
 curl -fsSL https://raw.githubusercontent.com/mert-kurttutan/nixos/main/scripts/setup-remote-vm.nu | nu -c 'source /dev/stdin; main'
 exec bash -l
 nix --version
@@ -101,6 +100,6 @@ inside a project-specific environment.
 Override the source repo or branch if needed:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/mert-kurttutan/nixos/main/scripts/install-dotfiles-remote.nu \
+curl -fsSL https://raw.githubusercontent.com/mert-kurttutan/nixos/main/scripts/utils/install-dotfiles-remote.nu \
   | NIXOS_CONF_REPO_URL=https://github.com/mert-kurttutan/nixos.git NIXOS_CONF_REPO_REF=main nu
 ```

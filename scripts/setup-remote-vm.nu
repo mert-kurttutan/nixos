@@ -1,7 +1,7 @@
 #!/usr/bin/env nu
 
 # Install Nix and the shared user-wide tools for a remote Linux VM.
-# Run scripts/install-nushell.sh first from Bash.
+# Run scripts/utils/install-nushell.sh first from Bash.
 # Keep project-specific LD_LIBRARY_PATH scoped to project commands. Nix and
 # the bootstrap tools must use the host's normal dynamic-library search path.
 def ensure-line [file: path, line: string] {
@@ -117,7 +117,7 @@ export def main [
   ^$nix --extra-experimental-features "nix-command flakes" profile add --priority 4 $"($tools_flake)#userTools"
 
   print "Installing remote dotfiles..."
-  ^curl --fail --location --show-error https://raw.githubusercontent.com/mert-kurttutan/nixos/main/scripts/install-dotfiles-remote.nu
+  ^curl --fail --location --show-error https://raw.githubusercontent.com/mert-kurttutan/nixos/main/scripts/utils/install-dotfiles-remote.nu
     | ^nu -c 'source /dev/stdin; main'
 
   print "Installing Codex skills..."
@@ -128,7 +128,7 @@ export def main [
 
   try {
     ^git clone --depth 1 --branch $repo_ref $repo_url $repo_dir
-    ^nu ($repo_dir | path join "scripts" "install-codex-skills.nu")
+    ^nu ($repo_dir | path join "scripts" "utils" "install-codex-skills.nu")
   } catch {|err|
     rm --recursive --force $tmp_dir
     error make { msg: $err.msg }

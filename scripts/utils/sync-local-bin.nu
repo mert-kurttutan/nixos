@@ -1,11 +1,17 @@
 #!/usr/bin/env nu
 
-let script_dir = ($env.CURRENT_FILE | path dirname | path expand)
+let utils_dir = ($env.CURRENT_FILE | path dirname | path expand)
+let script_dir = ($utils_dir | path dirname)
 let target_dir = ($"($env.HOME)/.local/bin" | path expand)
 
 mkdir $target_dir
 
-for source in (glob --no-dir $"($script_dir)/*") {
+let sources = (
+  (glob --no-dir $"($utils_dir)/*")
+  | append (glob --no-dir $"($script_dir)/*.nu")
+)
+
+for source in $sources {
   let executable = (do { ^test -x $source } | complete)
 
   if $executable.exit_code != 0 {
@@ -31,7 +37,6 @@ for source in (glob --no-dir $"($script_dir)/*") {
 for module in [
   "connect-github-codespace.nu"
   "setup-remote-vm.nu"
-  "deploy-koyeb-sshd.nu"
 ] {
   let source = ($script_dir | path join $module)
   let target = ($target_dir | path join $module)
