@@ -1,0 +1,6 @@
+# Starting point for a src-layout Python project.
+src = ["src"]
+
+[lint]
+select = ["E", "W", "F", "C", "B"]
+ignore = ["B008", "C901", "B905", "B010"]
