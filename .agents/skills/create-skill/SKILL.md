@@ -25,3 +25,10 @@ nu /home/kmert/nixos/scripts/utils/install-codex-skills.nu
 The installer copies skills from this checkout's `.agents/skills/` directory
 into the Codex skills directory. It uses `CODEX_HOME` when set, or
 `~/.codex` otherwise.
+
+## Skill topic dispatch
+
+- **Python:** For Python-related skill requests, update the existing skill at
+  `.agents/skills/python/` relative to the checkout. Add the relevant
+  guidance to its `SKILL.md` instead of creating a separate Python skill,
+  unless the user explicitly requests a separate skill.

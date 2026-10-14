@@ -1,5 +1,5 @@
 ---
-name: python-dev
+name: python
 description: Develop, maintain, and troubleshoot Python projects using the repository's conventions.
 ---
 
