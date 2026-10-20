@@ -2,8 +2,6 @@
 
 # Install Nix and the shared user-wide tools for a remote Linux VM.
 # Run scripts/utils/install-nushell.sh first from Bash.
-# Keep project-specific LD_LIBRARY_PATH scoped to project commands. Nix and
-# the bootstrap tools must use the host's normal dynamic-library search path.
 def ensure-line [file: path, line: string] {
   let existing = if ($file | path exists) { open --raw $file } else { "" }
   if not ($existing | str contains $line) {
@@ -78,25 +76,6 @@ def remove-inherited-project-environment [] {
 export def main [
   --preserve-project-environment # Keep the inherited project environment.
 ] {
-  if not $preserve_project_environment {
-    if ($env.LD_LIBRARY_PATH? | is-not-empty) {
-      hide-env LD_LIBRARY_PATH
-    }
-
-    let nu_config_dir = $nu.default-config-dir
-    let nu_env = ($nu_config_dir | path join "env.nu")
-    mkdir $nu_config_dir
-    let safe_hide_library_path = "if ($env.LD_LIBRARY_PATH? | is-not-empty) { hide-env LD_LIBRARY_PATH }"
-    if ($nu_env | path exists) {
-      let existing_nu_env = (open --raw $nu_env)
-      let normalized_nu_env = ($existing_nu_env | str replace --regex '(?m)^hide-env LD_LIBRARY_PATH$' $safe_hide_library_path)
-      if $normalized_nu_env != $existing_nu_env {
-        $normalized_nu_env | save --force $nu_env
-      }
-    }
-    ensure-line $nu_env $safe_hide_library_path
-  }
-
   let tools_flake = "github:mert-kurttutan/nixos?dir=nixos/common"
   let daemon_nix = "/nix/var/nix/profiles/default/bin/nix"
   let user_nix = $"($env.HOME)/.nix-profile/bin/nix"
@@ -174,9 +153,6 @@ export def main [
     print "Removing inherited project environment variables from normal shells..."
     remove-inherited-project-environment
 
-    ensure-line ($env.HOME | path join ".bashrc") "unset LD_LIBRARY_PATH"
-
-    print "Disabling the global project library path for normal shells..."
   }
 
   print "Removing automatic /opt/venv activation from Bash startup files..."
