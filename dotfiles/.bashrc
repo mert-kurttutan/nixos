@@ -6,6 +6,8 @@ fi
 
 # Keep host-provided project environments out of normal shells. Project
 # variables belong to the project's Nix development shell instead.
+unset LD_LIBRARY_PATH
+
 for variable in \
   PYTHON_ENV_DIR \
   PYTHONPATH \

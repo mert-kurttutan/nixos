@@ -159,6 +159,8 @@ export def main [
     print "Removing inherited project environment variables from normal shells..."
     remove-inherited-project-environment
 
+    ensure-line ($env.HOME | path join ".bashrc") "unset LD_LIBRARY_PATH"
+
     print "Disabling the global project library path for normal shells..."
     let safe_hide_library_path = "if ($env.LD_LIBRARY_PATH? | is-not-empty) { hide-env LD_LIBRARY_PATH }"
     if ($nu_env | path exists) {
