@@ -78,8 +78,23 @@ def remove-inherited-project-environment [] {
 export def main [
   --preserve-project-environment # Keep the inherited project environment.
 ] {
-  if not $preserve_project_environment and ($env.LD_LIBRARY_PATH? | is-not-empty) {
-    hide-env LD_LIBRARY_PATH
+  if not $preserve_project_environment {
+    if ($env.LD_LIBRARY_PATH? | is-not-empty) {
+      hide-env LD_LIBRARY_PATH
+    }
+
+    let nu_config_dir = $nu.default-config-dir
+    let nu_env = ($nu_config_dir | path join "env.nu")
+    mkdir $nu_config_dir
+    let safe_hide_library_path = "if ($env.LD_LIBRARY_PATH? | is-not-empty) { hide-env LD_LIBRARY_PATH }"
+    if ($nu_env | path exists) {
+      let existing_nu_env = (open --raw $nu_env)
+      let normalized_nu_env = ($existing_nu_env | str replace --regex '(?m)^hide-env LD_LIBRARY_PATH$' $safe_hide_library_path)
+      if $normalized_nu_env != $existing_nu_env {
+        $normalized_nu_env | save --force $nu_env
+      }
+    }
+    ensure-line $nu_env $safe_hide_library_path
   }
 
   let tools_flake = "github:mert-kurttutan/nixos?dir=nixos/common"
@@ -162,15 +177,6 @@ export def main [
     ensure-line ($env.HOME | path join ".bashrc") "unset LD_LIBRARY_PATH"
 
     print "Disabling the global project library path for normal shells..."
-    let safe_hide_library_path = "if ($env.LD_LIBRARY_PATH? | is-not-empty) { hide-env LD_LIBRARY_PATH }"
-    if ($nu_env | path exists) {
-      let existing_nu_env = (open --raw $nu_env)
-      let normalized_nu_env = ($existing_nu_env | str replace --regex '(?m)^hide-env LD_LIBRARY_PATH$' $safe_hide_library_path)
-      if $normalized_nu_env != $existing_nu_env {
-        $normalized_nu_env | save --force $nu_env
-      }
-    }
-    ensure-line $nu_env $safe_hide_library_path
   }
 
   print "Removing automatic /opt/venv activation from Bash startup files..."
