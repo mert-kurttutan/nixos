@@ -232,8 +232,25 @@
         "git-xet": "git-xet",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs_4",
+        "rustup-local": "rustup-local",
         "typst": "typst"
       }
+    },
+    "rustup-local": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "path": "../projects/rustup-nixpkgs-copy",
+        "type": "path"
+      },
+      "original": {
+        "path": "../projects/rustup-nixpkgs-copy",
+        "type": "path"
+      },
+      "parent": []
     },
     "systems": {
       "locked": {
