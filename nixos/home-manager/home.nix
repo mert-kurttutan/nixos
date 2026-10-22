@@ -1,5 +1,7 @@
 {
   pkgs,
+  lib,
+  codexPackage,
   username,
   homeDirectory,
   ...
@@ -7,6 +9,36 @@
 let
   zedNvidia = pkgs.writeShellScriptBin "zed-nvidia" ''
     exec env ZED_DEVICE_ID=0x2820 zed "$@"
+  '';
+  codexDesktop = pkgs.writeShellScriptBin "codex-desktop" ''
+    cd ${lib.escapeShellArg homeDirectory}
+    exec ${pkgs.alacritty}/bin/alacritty \
+      --option 'window.startup_mode="Maximized"' \
+      --working-directory ${lib.escapeShellArg homeDirectory} \
+      -e ${pkgs.zellij}/bin/zellij --new-session-with-layout ${codexLayout}
+  '';
+  codexLayout = pkgs.writeText "codex-layout.kdl" ''
+    layout {
+      default_tab_template {
+        pane size=1 borderless=true {
+          plugin location="zellij:tab-bar"
+        }
+        pane split_direction="vertical" {
+          pane name="side" size="8%" borderless=false {
+            plugin location="vertical-sidebar"
+          }
+          pane split_direction="vertical" {
+            pane name="Codex" focus=true command="${codexPackage}/bin/codex"
+            pane name="shell"
+          }
+        }
+        pane size=1 borderless=true {
+          plugin location="zellij:status-bar"
+        }
+      }
+
+      tab name="Codex" focus=true
+    }
   '';
 in
 {
@@ -24,6 +56,7 @@ in
   # Packages that should be installed to the user profile.
   home.packages = [
     zedNvidia
+    codexDesktop
   ];
 
   # This value determines the home Manager release that your
@@ -54,6 +87,19 @@ in
       "text/plain"
       "application/x-zerosize"
       "x-scheme-handler/zed"
+    ];
+  };
+
+  xdg.desktopEntries.codex-cli = {
+    name = "Codex";
+    genericName = "AI Coding Assistant";
+    comment = "Launch Codex CLI in Zellij";
+    exec = "${codexDesktop}/bin/codex-desktop";
+    icon = "utilities-terminal";
+    terminal = false;
+    type = "Application";
+    categories = [
+      "Development"
     ];
   };
 
