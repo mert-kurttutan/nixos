@@ -56,8 +56,8 @@
 
     # Coding stuff
     # openjdk23
-    nodejs
-    python311
+    # nodejs
+    # python311
 
     # Other
     kubectl
@@ -143,8 +143,8 @@
     virt-manager
 
     # js
-    deno
-    fnm
+    # deno
+    # fnm
 
     # AI
     # warp-terminal
