@@ -3,8 +3,8 @@
 
   inputs = {
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
-    rustup-local = {
-      url = "path:../projects/rustup-nixpkgs-copy";
+    rustup-fixed = {
+      url = "path:./flakes/rustup-fixed";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
@@ -25,7 +25,6 @@
     inputs@{
       self,
       nixpkgs,
-      rustup-local,
       home-manager,
       common,
       binary-flakes,
@@ -55,7 +54,6 @@
               ./hosts/excalibur
               {
                 nixpkgs.overlays = [
-                  rustup-local.overlays.default
                   (final: prev: {
                     ltrace = prev.ltrace.overrideAttrs (_: {
                       doCheck = false;

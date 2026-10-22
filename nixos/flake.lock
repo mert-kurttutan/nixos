@@ -232,22 +232,22 @@
         "git-xet": "git-xet",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs_4",
-        "rustup-local": "rustup-local",
+        "rustup-fixed": "rustup-fixed",
         "typst": "typst"
       }
     },
-    "rustup-local": {
+    "rustup-fixed": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "path": "../projects/rustup-nixpkgs-copy",
+        "path": "./flakes/rustup-fixed",
         "type": "path"
       },
       "original": {
-        "path": "../projects/rustup-nixpkgs-copy",
+        "path": "./flakes/rustup-fixed",
         "type": "path"
       },
       "parent": []

@@ -151,7 +151,7 @@
     inputs.typst.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # rust
-    rustup
+    inputs.rustup-fixed.packages.${stdenv.hostPlatform.system}.rustup
 
     # c/c++
     (lib.hiPrio clang)
