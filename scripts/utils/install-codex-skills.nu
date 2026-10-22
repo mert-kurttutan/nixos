@@ -34,7 +34,7 @@ def main [] {
       let target = ($target_skill_dir | path join $relative)
 
       mkdir ($target | path dirname)
-      cp --no-dereference --force $source $target
+      ^cp --no-dereference --force $source $target
     }
 
     print $"installed ($skill_name) -> ($target_skill_dir)"

@@ -1,0 +1,7 @@
+# Prefer Rustfmt's more permissive width heuristics so calls and chains stay
+# on one line more often. This adjusts chain_width and other heuristic widths;
+# it does not change max_width.
+use_small_heuristics = "Max"
+
+# Keep module declaration order as written.
+reorder_modules = false
