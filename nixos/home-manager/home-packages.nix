@@ -150,9 +150,6 @@
     # warp-terminal
     inputs.typst.packages.${pkgs.stdenv.hostPlatform.system}.default
 
-    # rust
-    inputs.rustup-fixed.packages.${stdenv.hostPlatform.system}.rustup
-
     # c/c++
     (lib.hiPrio clang)
     gcc
